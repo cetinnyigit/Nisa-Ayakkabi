@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nisa Ayakkabı - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#dec1ac",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-container-low": "#f4f3f1",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#d1c5b5",
+                        "background": "#faf9f6",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-primary-container": "#503906",
+                        "outline": "#7f7668",
+                        "surface-tint": "#755a25",
+                        "surface": "#faf9f6",
+                        "secondary-fixed-dim": "#c6c7c2",
+                        "surface-container-high": "#e9e8e5",
+                        "secondary-fixed": "#e3e3de",
+                        "inverse-surface": "#2f312f",
+                        "tertiary-fixed": "#fbddc7",
+                        "primary": "#755a25",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4c392a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#454744",
+                        "tertiary-container": "#bea38f",
+                        "on-secondary-container": "#62635f",
+                        "primary-container": "#c5a367",
+                        "secondary": "#5d5f5b",
+                        "on-tertiary-fixed": "#28180b",
+                        "on-surface-variant": "#4d463a",
+                        "surface-variant": "#e3e2e0",
+                        "on-surface": "#1a1c1a",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf9f6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#e6c182",
+                        "inverse-primary": "#e6c182",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#5b430f",
+                        "secondary-container": "#e0e0db",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#271900",
+                        "on-tertiary-fixed-variant": "#574333",
+                        "primary-fixed": "#ffdea7",
+                        "surface-dim": "#dbdad7",
+                        "on-background": "#1a1c1a",
+                        "surface-container": "#efeeeb",
+                        "on-secondary-fixed": "#1a1c19",
+                        "tertiary": "#705a49"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "stack-sm": "24px",
+                        "container-max": "1280px",
+                        "stack-md": "48px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "stack-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "body-sm": ["Montserrat"],
+                        "label-caps": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ambient-shadow {
+            box-shadow: 0 10px 40px rgba(112, 90, 73, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-[40px_0_40px_rgba(112,90,73,0.04)] shadow-sm hidden md:flex flex-col py-8 px-6 z-50">
+<div class="mb-12">
+<h1 class="font-display-lg text-headline-sm text-primary dark:text-inverse-primary tracking-tight">Nisa Ayakkabı</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Admin Console</p>
+</div>
+<ul class="flex flex-col gap-4 flex-grow font-body-md text-body-md font-label-caps text-label-caps">
+<li>
+<a class="flex items-center gap-4 py-3 px-4 text-primary dark:text-inverse-primary font-bold border-r-2 border-primary hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 px-4 text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+                    Products
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 px-4 text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+                    Categories
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 px-4 text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+                    Orders
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 px-4 text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 relative w-full overflow-y-auto">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md bg-surface-container-lowest/80 border-b border-outline-variant/30 flex justify-between items-center px-margin-desktop z-40 transition-opacity duration-300 ease-out">
+<div class="flex items-center">
+<!-- Search could go here -->
+</div>
+<div class="flex items-center gap-6 text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps">
+<button class="hover:text-primary dark:hover:text-inverse-primary transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-primary dark:hover:text-inverse-primary transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A refined, professional portrait of a boutique manager. Soft lighting, neutral background, conveying a sense of calm luxury and competence in a high-end fashion setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj9ZylxUAxeGo6_RupBy9rtr04SsbR6oxsioi6sHSV61LBd4Xkt-y0Hdvx1bLdJ6wqxNS8wkM6alf2hrZzIfUW3_5ah4vDId9nv500yb6QbBze59a2wxYwIPsIEtUNnbENdoHiSE-g9wdYvQW9y6Fgv4X1qFnFEFstUShM1paKdroXtcQxGqtvhgxt9vpFm5cvrm4qrM1WVNDzSSrL1eFLlIf7L_6vq8QMj4duWq1aDi2NVxhk73oQ-A"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="pt-32 pb-margin-desktop px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Welcome Header -->
+<div class="mb-stack-sm">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">Hoş Geldiniz.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Koleksiyonunuzun performansını zarif bir şekilde yönetin.</p>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 ambient-shadow flex flex-col justify-between h-32">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Toplam Satış</span>
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-4">₺124,500</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 ambient-shadow flex flex-col justify-between h-32">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Yeni Siparişler</span>
+<span class="material-symbols-outlined text-primary text-xl">local_shipping</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-4">32</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 ambient-shadow flex flex-col justify-between h-32">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Toplam Ürün</span>
+<span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-4">156</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 ambient-shadow flex flex-col justify-between h-32">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Aktif Kampanyalar</span>
+<span class="material-symbols-outlined text-primary text-xl">campaign</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-4">3</div>
+</div>
+</div>
+<!-- Layout Grid for Chart and Orders -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Chart Section (Glassmorphism card style) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-lg p-6 ambient-shadow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-outline-variant/30 pb-4">Satış Grafiği</h3>
+<!-- Placeholder for Chart -->
+<div class="h-64 w-full bg-surface-container-low rounded flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container via-surface to-surface"></div>
+<span class="font-body-md text-on-surface-variant z-10">Grafik Görünümü (Q3)</span>
+</div>
+</div>
+<!-- Recent Orders Section -->
+<div class="bg-surface-container-lowest rounded-lg p-6 ambient-shadow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-outline-variant/30 pb-4">Son Siparişler</h3>
+<ul class="flex flex-col gap-4">
+<!-- Order 1 -->
+<li class="flex items-center justify-between group hover:bg-surface-container-low p-2 rounded transition-colors duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-secondary-container flex-shrink-0 overflow-hidden">
+<img alt="Shoe Thumbnail" class="w-full h-full object-cover" data-alt="Close up of a premium leather pump shoe in cream color. High resolution, studio lighting, showcasing the texture of the soft leather and elegant silhouette against a minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTeyEFbpH-k3NA1-cHkqHQdrJwL90KcePEf42_x7YwnRa0J8Ss1bjP_FVnK6IQPXln7I-sfl3v9Mjd-uxdBn4sAA9c8vgYv0Oy4Bp2Pj0pS6aNJYYZkWhYJzK544boANsL6XedY4j2xn44RcAbsIkkRd-FUBJ9cGEv_ikwRD1eXpvfF4LMC6vFlDBNkidyAdylnbp_IWXmwxSNZwOPa3nsKTCQ4pa89lrcq6J929FxMzY9TCmJzp6UQQ"/>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">Sipariş #1042</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Ayşe Y.</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-sm text-body-sm text-on-surface">₺1,250</p>
+<span class="font-label-caps text-[10px] text-primary">Hazırlanıyor</span>
+</div>
+</li>
+<!-- Order 2 -->
+<li class="flex items-center justify-between group hover:bg-surface-container-low p-2 rounded transition-colors duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-secondary-container flex-shrink-0 overflow-hidden">
+<img alt="Shoe Thumbnail" class="w-full h-full object-cover" data-alt="A pair of sleek, modern leather boots in mocha brown. Shot from a low angle with soft diffused light to highlight the polished finish and artisanal stitching." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzbdtDA9-41q1JBElXaCkucpII3nboEntAQlNT4z0ksRp0t1KSpnb-rDFQ7eS3uZaCnt_pF7QKF7UoDKANgjF0X1WDiZk9ecFXqZXziZQWblsuuF_m8IH6V_74ITdEJwIU5Lwt45LN68jmzzHU0uUNDQnkUqh6MjRIopJaFGXxsIkokjOiTQO_SBoqB4PyrylC2IWUGLeoZfx3oCGWQUn9-KtvLklTQ1hmeiNfmF1lWiBv5aX1xpbuuQ"/>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">Sipariş #1041</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Zeynep K.</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-sm text-body-sm text-on-surface">₺2,400</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">Kargolandı</span>
+</div>
+</li>
+<!-- Order 3 -->
+<li class="flex items-center justify-between group hover:bg-surface-container-low p-2 rounded transition-colors duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-secondary-container flex-shrink-0 overflow-hidden">
+<img alt="Shoe Thumbnail" class="w-full h-full object-cover" data-alt="Elegant beige stiletto heels resting on a pristine white marble surface. Bright, airy lighting accentuates the minimalist luxury aesthetic of the footwear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjiehS8cZayk4xWd3ZrlP1_Wv1SyRv1ri764brWqoR39HggwectpL8SOVRprFi6ZZ8KV9gJh7Yb-9F_jXHHcX-_PNbWKbX85782jyu0Ej9XCZFl22KrJTtnrr7VNCd4YSiJz0c6UMieUYW3_bfoX7dT0nSS0LSoT84EIxt7Hgu6xnpP8LRIItr4FUu0Ftuyj3JZH9X8XrVynOi3DltqTpOGvtZyCg8gt8p6Sg7UCw6Nhm-ODvEQa9g2g"/>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">Sipariş #1040</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Elif S.</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-sm text-body-sm text-on-surface">₺850</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">Teslim Edildi</span>
+</div>
+</li>
+</ul>
+<button class="w-full mt-6 py-3 border border-primary text-primary hover:bg-primary/5 rounded font-label-caps text-label-caps transition-colors duration-300">
+                        Tümünü Gör
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -2,25 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-background text-on-background font-body-md text-body-md antialiased;
+  }
+
+  /* Material Symbols. font-family'yi Google'ın stylesheet'i de tanımlar; burada
+     tekrar etmemizin sebebi o stylesheet geç gelirse ikonların ham metin
+     ("search", "person") olarak görünmesini engellemek. */
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    /* Stitch tasarımlarındaki ince stroke */
+    font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Sayfa içeriği için standart konteyner: 1280px max, 20/64px kenar boşluğu */
+  .container-nisa {
+    @apply mx-auto w-full max-w-container-max px-margin-mobile md:px-margin-desktop;
+  }
+
+  /* Sticky nav / quick-view panelleri için buzlu cam efekti */
+  .glass {
+    @apply bg-surface/80 backdrop-blur-md;
+  }
 }
 
 @layer utilities {
+  .ambient-shadow {
+    @apply shadow-ambient;
+  }
+
+  .ambient-shadow-hover {
+    @apply transition-shadow duration-300 hover:shadow-ambient-hover;
+  }
+
   .text-balance {
     text-wrap: balance;
   }

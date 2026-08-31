@@ -25,11 +25,19 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files (.env.example izlenmeye devam eder)
+.env
 .env*.local
+!.env.example
 
 # vercel
 .vercel
+
+# MCP sunucu ayarlari — icinde API anahtari var, depoya girmemeli
+.mcp.json
+
+# tek seferlik bakim script'leri
+set-hero.js
 
 # typescript
 *.tsbuildinfo

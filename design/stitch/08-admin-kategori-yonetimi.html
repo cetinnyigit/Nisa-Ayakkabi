@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nisa Ayakkabı - Admin Console - Kategoriler</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#dec1ac",
+                    "surface-container-highest": "#e3e2e0",
+                    "surface-container-low": "#f4f3f1",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#d1c5b5",
+                    "background": "#faf9f6",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-primary-container": "#503906",
+                    "outline": "#7f7668",
+                    "surface-tint": "#755a25",
+                    "surface": "#faf9f6",
+                    "secondary-fixed-dim": "#c6c7c2",
+                    "surface-container-high": "#e9e8e5",
+                    "secondary-fixed": "#e3e3de",
+                    "inverse-surface": "#2f312f",
+                    "tertiary-fixed": "#fbddc7",
+                    "primary": "#755a25",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#4c392a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#454744",
+                    "tertiary-container": "#bea38f",
+                    "on-secondary-container": "#62635f",
+                    "primary-container": "#c5a367",
+                    "secondary": "#5d5f5b",
+                    "on-tertiary-fixed": "#28180b",
+                    "on-surface-variant": "#4d463a",
+                    "surface-variant": "#e3e2e0",
+                    "on-surface": "#1a1c1a",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf9f6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#e6c182",
+                    "inverse-primary": "#e6c182",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#5b430f",
+                    "secondary-container": "#e0e0db",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#271900",
+                    "on-tertiary-fixed-variant": "#574333",
+                    "primary-fixed": "#ffdea7",
+                    "surface-dim": "#dbdad7",
+                    "on-background": "#1a1c1a",
+                    "surface-container": "#efeeeb",
+                    "on-secondary-fixed": "#1a1c19",
+                    "tertiary": "#705a49"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "stack-sm": "24px",
+                    "container-max": "1280px",
+                    "stack-md": "48px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "stack-lg": "80px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Playfair Display"
+                    ],
+                    "headline-sm": [
+                            "Playfair Display"
+                    ],
+                    "display-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "body-lg": [
+                            "Montserrat"
+                    ],
+                    "body-md": [
+                            "Montserrat"
+                    ],
+                    "headline-md": [
+                            "Playfair Display"
+                    ],
+                    "body-sm": [
+                            "Montserrat"
+                    ],
+                    "label-caps": [
+                            "Montserrat"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-background">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-[40px_0_40px_rgba(112,90,73,0.04)] shadow-sm hidden md:flex flex-col h-full py-8 px-6 z-50">
+<div class="mb-12">
+<h1 class="font-display-lg text-headline-sm text-primary dark:text-inverse-primary tracking-tight">Nisa Ayakkabı</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-2">Admin Console</p>
+</div>
+<ul class="flex flex-col space-y-2 font-body-md text-body-md font-label-caps text-label-caps">
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span>Products</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-2 border-primary bg-secondary-container/10" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="category">category</span>
+<span>Categories</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>Orders</span>
+</a>
+</li>
+<li class="mt-auto pt-8 border-t border-outline-variant/30">
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 dark:hover:bg-secondary/20 transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-desktop z-40 duration-300 ease-out">
+<div class="flex items-center md:hidden">
+<span class="material-symbols-outlined text-primary text-2xl mr-4 cursor-pointer" data-icon="menu">menu</span>
+<span class="font-display-lg text-headline-sm text-primary dark:text-inverse-primary">Nisa Ayakkabı</span>
+</div>
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant/50 focus-within:border-primary transition-colors w-64">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm text-on-surface w-full placeholder-on-surface-variant/70" placeholder="Kategori Ara..." type="text"/>
+</div>
+<div class="flex items-center space-x-6 font-label-caps text-label-caps">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/50 cursor-pointer">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A close-up, softly lit portrait of a professional model with an elegant, minimalist aesthetic, representing an admin profile picture. The background is a pure, soft beige. High fashion editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvzdnMX7-63uDEWx_J0VAHL2-ysSL-e9fcjrDzFOYJTPHYt9MFkdoTD8xekIzvhoCu0IOnlq2xaMmFsO-k1Jfh_4lkV4l0Zvx2FmaCg4Qt0UDP7F1l6Azhr7Qm9gWkXUxKnFBKQRAdzAD6wCt72x6JCNzXW5jRC7TPCXQXeXvA2URDnHuNIQtX3hkXlqhrFu5wjUPr62KVlZIrFXOGOteV_HbAVz4ybrKPJ2awv66YWKhF-ZMruWZWzA"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-24 px-margin-mobile md:px-margin-desktop pb-12 flex-1">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-stack-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Kategori Yönetimi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Mağazanızdaki ürün kategorilerini düzenleyin ve yönetin.</p>
+</div>
+<button class="mt-4 md:mt-0 bg-tertiary text-on-tertiary font-label-caps text-label-caps px-6 py-3 rounded hover:bg-tertiary/90 transition-colors duration-300 flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>YENİ KATEGORİ EKLE</span>
+</button>
+</div>
+<!-- Content Area - Glassmorphism Table Container -->
+<div class="bg-surface-container-lowest/60 backdrop-blur-md rounded-xl shadow-[0_10px_40px_rgba(112,90,73,0.03)] border border-outline-variant/20 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/20 bg-surface-container-low/50">
+<th class="font-label-caps text-label-caps text-on-surface-variant py-4 px-6 font-semibold tracking-wider">Kategori Adı</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-4 px-6 font-semibold tracking-wider">Ürün Sayısı</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-4 px-6 font-semibold tracking-wider">Durum</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-4 px-6 font-semibold tracking-wider text-right">İşlemler</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-highest/20 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center space-x-4">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="stiletto">swipe_left_alt</span>
+</div>
+<span class="font-medium">Topuklu Ayakkabılar</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">124</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-container/20 text-primary">
+                                        Aktif
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Düzenle">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1" title="Sil">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center space-x-4">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="sneaker">4g_mobiledata</span>
+</div>
+<span class="font-medium">Sneaker &amp; Spor</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">89</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-container/20 text-primary">
+                                        Aktif
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Düzenle">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1" title="Sil">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center space-x-4">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="boot">file_download_done</span>
+</div>
+<span class="font-medium">Bot &amp; Çizme</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">45</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-variant text-on-surface-variant">
+                                        Pasif
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Düzenle">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1" title="Sil">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center space-x-4">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="beach_access">beach_access</span>
+</div>
+<span class="font-medium">Sandalet &amp; Terlik</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">67</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-container/20 text-primary">
+                                        Aktif
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Düzenle">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1" title="Sil">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-outline-variant/20 bg-surface-container-lowest/30 px-6 py-4 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Toplam 4 kategori gösteriliyor</span>
+<div class="flex space-x-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-highest transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-body-sm text-body-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-highest transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

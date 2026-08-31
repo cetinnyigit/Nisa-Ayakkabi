@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nisa Ayakkabı - Ürün Yönetimi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#dec1ac",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-container-low": "#f4f3f1",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#d1c5b5",
+                        "background": "#faf9f6",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-primary-container": "#503906",
+                        "outline": "#7f7668",
+                        "surface-tint": "#755a25",
+                        "surface": "#faf9f6",
+                        "secondary-fixed-dim": "#c6c7c2",
+                        "surface-container-high": "#e9e8e5",
+                        "secondary-fixed": "#e3e3de",
+                        "inverse-surface": "#2f312f",
+                        "tertiary-fixed": "#fbddc7",
+                        "primary": "#755a25",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4c392a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#454744",
+                        "tertiary-container": "#bea38f",
+                        "on-secondary-container": "#62635f",
+                        "primary-container": "#c5a367",
+                        "secondary": "#5d5f5b",
+                        "on-tertiary-fixed": "#28180b",
+                        "on-surface-variant": "#4d463a",
+                        "surface-variant": "#e3e2e0",
+                        "on-surface": "#1a1c1a",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf9f6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#e6c182",
+                        "inverse-primary": "#e6c182",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#5b430f",
+                        "secondary-container": "#e0e0db",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#271900",
+                        "on-tertiary-fixed-variant": "#574333",
+                        "primary-fixed": "#ffdea7",
+                        "surface-dim": "#dbdad7",
+                        "on-background": "#1a1c1a",
+                        "surface-container": "#efeeeb",
+                        "on-secondary-fixed": "#1a1c19",
+                        "tertiary": "#705a49"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "stack-sm": "24px",
+                        "container-max": "1280px",
+                        "stack-md": "48px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "stack-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "body-sm": ["Montserrat"],
+                        "label-caps": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .glass-panel { background: rgba(250, 249, 246, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(209, 197, 181, 0.3); }
+        .soft-shadow { box-shadow: 0 40px 40px rgba(112, 90, 73, 0.04); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex font-body-md text-body-md">
+<!-- SideNavBar -->
+<aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-[40px_0_40px_rgba(112,90,73,0.04)] z-50 flex-col py-8 px-6 transition-colors ease-in-out duration-300">
+<div class="mb-12">
+<h1 class="font-display-lg text-headline-sm text-primary dark:text-inverse-primary tracking-tight">Nisa Ayakkabı</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-2">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined font-light group-hover:text-primary transition-colors">dashboard</span>
+<span class="font-label-caps text-label-caps tracking-wider group-hover:text-primary transition-colors">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-2 border-primary bg-secondary-container/20" href="#">
+<span class="material-symbols-outlined font-light">shopping_bag</span>
+<span class="font-label-caps text-label-caps tracking-wider">Products</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined font-light group-hover:text-primary transition-colors">category</span>
+<span class="font-label-caps text-label-caps tracking-wider group-hover:text-primary transition-colors">Categories</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined font-light group-hover:text-primary transition-colors">receipt_long</span>
+<span class="font-label-caps text-label-caps tracking-wider group-hover:text-primary transition-colors">Orders</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg text-on-surface-variant dark:text-surface-variant opacity-70 hover:bg-secondary-container/50 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined font-light group-hover:text-primary transition-colors">settings</span>
+<span class="font-label-caps text-label-caps tracking-wider group-hover:text-primary transition-colors">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 relative min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md z-40 flex justify-between items-center px-margin-mobile md:px-margin-desktop transition-all duration-300 border-b border-outline-variant/10">
+<div class="flex items-center w-full max-w-md bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant/30 focus-within:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 font-light">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant/70 focus:ring-0" placeholder="Ürün Ara..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-opacity duration-300">
+<span class="material-symbols-outlined font-light">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity duration-300">
+<span class="material-symbols-outlined font-light">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small circular profile picture of an elegant administrator, subtle lighting, professional and luxurious aesthetic, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA53i6LgvFc5S7TNLkTKICwQbaFxR_-WWY-nIacq3gmqakheQc4Oewe3kkzHD5ylfixZWuqHZb-Ip43AxR9qaiQBUzGjcOB-RCBZ9pP2T_2S5e8nXJH1Rg6srITirWcTMoC7QapRdt4nhafMV_xV84iyLYNyAu7oNvC8yNJl3afeHoAlCS7u02Iua1hKBX_VF1CEFkhWfBbZA3bDH85ktcjxXv76mVB3GmgthbzoX4p6G0xPA63ExEo_A"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-md gap-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ürün Yönetimi</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Koleksiyonunuzdaki tüm ürünleri görüntüleyin ve düzenleyin.</p>
+</div>
+<button class="bg-tertiary text-on-tertiary px-6 py-3 rounded-lg font-label-caps text-label-caps tracking-wider hover:bg-tertiary/90 transition-colors duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
+                    YENİ ÜRÜN EKLE
+                </button>
+</div>
+<!-- Filters & Controls -->
+<div class="glass-panel rounded-xl p-6 mb-stack-sm flex flex-wrap gap-4 items-center justify-between">
+<div class="flex gap-4 flex-wrap">
+<select class="bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-2 font-body-sm text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+<option>Tüm Kategoriler</option>
+<option>Topuklu</option>
+<option>Sneaker</option>
+<option>Bot</option>
+</select>
+<select class="bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-2 font-body-sm text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+<option>Stok Durumu</option>
+<option>Stokta Var</option>
+<option>Tükendi</option>
+</select>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span>Sırala:</span>
+<button class="flex items-center hover:text-primary transition-colors">En Yeni <span class="material-symbols-outlined text-sm ml-1">expand_more</span></button>
+</div>
+</div>
+<!-- Product Table (Bento/Card Hybrid for luxury feel) -->
+<div class="bg-surface rounded-2xl soft-shadow overflow-hidden border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/20 bg-surface-container-low/50">
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant font-semibold tracking-wider">Ürün</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant font-semibold tracking-wider">Kategori</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant font-semibold tracking-wider">Fiyat</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant font-semibold tracking-wider">Stok</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant font-semibold tracking-wider text-right">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-16 h-16 rounded bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-end studio shot of a luxurious cream-colored leather pump shoe. The lighting is soft and diffused, highlighting the smooth texture of the leather. The background is a warm, minimalist beige. The aesthetic is editorial and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvToFpn-Wc224as8zlPS-fhieF3lMUSdtch_RdgNub_TQzOW8m5HXqHIY5hIdo78MIyhgLpvUTlJpSrFu3vZ0v-8AW-YfxrlGn3yNqxiTjHRHXvRZPZVCiMZUNGh7rJjGiAmFeOmei4UtZmBhV7BnKVbys2jj1aJmNuSUSkZkZDv_HQBCS-Ec536_1A_lB6IbtkmdikQsSAM87CudsSi4cHWYsyXxXOpgzw-_Cr1FeEP2AC_9c7ChlGw"/>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-on-surface font-medium">Aria Klasik Topuklu</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">SKU: NA-001</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-on-surface">Topuklu</td>
+<td class="py-4 px-6 font-body-md text-on-surface font-medium">₺4,250</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-on-primary-container font-label-caps text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    Stokta (42)
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined font-light" style="font-size: 20px;">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors rounded-full hover:bg-error-container/50">
+<span class="material-symbols-outlined font-light" style="font-size: 20px;">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-16 h-16 rounded bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A premium minimalist white leather sneaker, photographed against a soft mocha background. The lighting is crisp yet elegant, casting a subtle, diffused shadow. The style is modern, clean, and luxurious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTW14rIyhmIuINjuTLD2K0qPyfjXYdTJxdbbWfC_EiOKdmEeiq5C2aRaZMAhGqXgcbdCQH8irZfPyCpoqEni6BIiDyVzblnw6Sj2BKNGeurVLCbOFcnj0KK_RMsWSYs-QMVC81ZUOP2V151Qto0Ub2RteBFNSkBaWhQPWXAfkEePQEjfRYfSoDz1PvJRsf9qxrQC_hpej1d5T5J0vCQ715_QVThgtmOkojiCEuLRPafeLdmnJsKbbymA"/>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-on-surface font-medium">Luna Minimal Sneaker</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">SKU: NA-045</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-on-surface">Sneaker</td>
+<td class="py-4 px-6 font-body-md text-on-surface font-medium">₺3,800</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-on-primary-container font-label-caps text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    Stokta (18)
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined font-light" style="font-size: 20px;">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors rounded-full hover:bg-error-container/50">
+<span class="material-symbols-outlined font-light" style="font-size: 20px;">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-200 group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-16 h-16 rounded bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An elegant black suede ankle boot, elegantly styled in a gallery-like setting. Soft, warm ambient lighting highlights the rich texture of the suede. The overall composition is refined, dark, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOUCy7f6t8GCfVg4Y0_qH6rZFnuDneqD9r47EgGHaeYZKEZyb4wKGTzxyZf_Of4WYslqIhhyA1rmmbve3lEhu7loW0glb-QQCPXX6T8plxRTs_8jrrDNSQqbDj8pDPnjPdXdqge2NVsedsetVbhxKm_S8WCq5jrExCTAZPrlPHW_TbhaStivt9yD2TxWHt3uyIbXnkASqJk33r5kUXsyOZUXv6Qpqx897WlsMYdlH9ZaH4oHmBynODxw"/>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-on-surface font-medium">Nova Süet Bot</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">SKU: NA-112</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-on-surface">Bot</td>
+<td class="py-4 px-6 font-body-md text-on-surface font-medium">₺5,600</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container/50 text-on-error-container font-label-caps text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                    Tükendi
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined font-light" style="font-size: 20px;">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors rounded-full hover:bg-error-container/50">
+<span class="material-symbols-outlined font-light" style="font-size: 20px;">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination (Minimalist) -->
+<div class="px-6 py-4 border-t border-outline-variant/10 flex items-center justify-between bg-surface-container-lowest">
+<span class="font-body-sm text-body-sm text-on-surface-variant">1-3 of 48 ürün gösteriliyor</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 text-on-surface-variant hover:border-primary hover:text-primary transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined font-light text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined font-light text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nisa Ayakkabı — Stitch Tasarımları</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --gold:#c5a367; --primary:#755a25; --cream:#faf9f6; --ink:#1a1c1a; --muted:#4d463a; --line:#d1c5b5; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font-family:Montserrat,sans-serif; }
+  .wrap { max-width:1280px; margin:0 auto; padding:64px 20px 96px; }
+  @media (min-width:768px){ .wrap{ padding:80px 64px 120px; } }
+  .eyebrow { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0; }
+  h1 { font-family:'Playfair Display',serif; font-weight:600; font-size:48px; line-height:1.1; letter-spacing:-.02em; margin:8px 0 0; }
+  .lede { font-size:18px; line-height:1.6; color:var(--muted); max-width:60ch; margin:24px 0 0; }
+  h2 { font-family:'Playfair Display',serif; font-weight:500; font-size:24px; line-height:1.3; margin:80px 0 24px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; }
+  .card { display:block; text-decoration:none; color:inherit; background:#fff; border-radius:16px; overflow:hidden;
+          box-shadow:0 40px 40px rgba(112,90,73,.04); transition:box-shadow .3s ease, transform .3s ease; }
+  .card:hover { box-shadow:0 40px 40px rgba(112,90,73,.12); transform:translateY(-2px); }
+  .thumb { display:block; width:100%; height:220px; object-fit:cover; object-position:top center; background:#efeeeb; }
+  .meta { padding:16px 20px 20px; }
+  .meta strong { display:block; font-family:'Playfair Display',serif; font-weight:500; font-size:18px; }
+  .meta span { display:block; margin-top:6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+  .note { margin-top:80px; padding:24px; border:1px solid var(--line); border-radius:16px; font-size:14px; line-height:1.6; color:var(--muted); }
+  .note b { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Nisa Ayakkabı</p>
+  <h1>Stitch Tasarımları</h1>
+  <p class="lede">Stitch'ten indirilen 9 ekranın statik önizlemesi. Bunlar referans HTML çıktılarıdır —
+    uygulama kodu değil. Her kart ilgili tasarımı yeni sekmede açar.</p>
+
+  <h2>Vitrin</h2>
+  <div class="grid">
+    <a class="card" href="01-ana-sayfa.html" target="_blank"><img class="thumb" src="screenshots/01-ana-sayfa.png" alt=""><div class="meta"><strong>Ana Sayfa</strong><span>01 · Güncellenmiş</span></div></a>
+    <a class="card" href="02-koleksiyonlar.html" target="_blank"><img class="thumb" src="screenshots/02-koleksiyonlar.png" alt=""><div class="meta"><strong>Koleksiyonlar</strong><span>02 · Liste + filtre</span></div></a>
+    <a class="card" href="03-urun-detayi.html" target="_blank"><img class="thumb" src="screenshots/03-urun-detayi.png" alt=""><div class="meta"><strong>Ürün Detayı</strong><span>03</span></div></a>
+    <a class="card" href="04-sepetim.html" target="_blank"><img class="thumb" src="screenshots/04-sepetim.png" alt=""><div class="meta"><strong>Sepetim</strong><span>04</span></div></a>
+    <a class="card" href="05-odeme.html" target="_blank"><img class="thumb" src="screenshots/05-odeme.png" alt=""><div class="meta"><strong>Ödeme</strong><span>05 · Checkout</span></div></a>
+  </div>
+
+  <h2>Admin Paneli</h2>
+  <div class="grid">
+    <a class="card" href="06-admin-genel-bakis.html" target="_blank"><img class="thumb" src="screenshots/06-admin-genel-bakis.png" alt=""><div class="meta"><strong>Genel Bakış</strong><span>06 · Dashboard</span></div></a>
+    <a class="card" href="07-admin-urun-yonetimi.html" target="_blank"><img class="thumb" src="screenshots/07-admin-urun-yonetimi.png" alt=""><div class="meta"><strong>Ürün Yönetimi</strong><span>07</span></div></a>
+    <a class="card" href="08-admin-kategori-yonetimi.html" target="_blank"><img class="thumb" src="screenshots/08-admin-kategori-yonetimi.png" alt=""><div class="meta"><strong>Kategori Yönetimi</strong><span>08</span></div></a>
+    <a class="card" href="09-admin-siparis-yonetimi.html" target="_blank"><img class="thumb" src="screenshots/09-admin-siparis-yonetimi.png" alt=""><div class="meta"><strong>Sipariş Yönetimi</strong><span>09</span></div></a>
+  </div>
+
+  <p class="note"><b>Eksik ekranlar:</b> giriş / kayıt, hesabım, sipariş takibi, favoriler,
+    arama sonuçları, 404 ve mobil varyantlar henüz Stitch'te üretilmedi.</p>
+</div>
+</body>
+</html>

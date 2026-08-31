@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nisa Ayakkabı - Sipariş Yönetimi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#dec1ac",
+                    "surface-container-highest": "#e3e2e0",
+                    "surface-container-low": "#f4f3f1",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#d1c5b5",
+                    "background": "#faf9f6",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-primary-container": "#503906",
+                    "outline": "#7f7668",
+                    "surface-tint": "#755a25",
+                    "surface": "#faf9f6",
+                    "secondary-fixed-dim": "#c6c7c2",
+                    "surface-container-high": "#e9e8e5",
+                    "secondary-fixed": "#e3e3de",
+                    "inverse-surface": "#2f312f",
+                    "tertiary-fixed": "#fbddc7",
+                    "primary": "#755a25",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#4c392a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#454744",
+                    "tertiary-container": "#bea38f",
+                    "on-secondary-container": "#62635f",
+                    "primary-container": "#c5a367",
+                    "secondary": "#5d5f5b",
+                    "on-tertiary-fixed": "#28180b",
+                    "on-surface-variant": "#4d463a",
+                    "surface-variant": "#e3e2e0",
+                    "on-surface": "#1a1c1a",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf9f6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#e6c182",
+                    "inverse-primary": "#e6c182",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#5b430f",
+                    "secondary-container": "#e0e0db",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#271900",
+                    "on-tertiary-fixed-variant": "#574333",
+                    "primary-fixed": "#ffdea7",
+                    "surface-dim": "#dbdad7",
+                    "on-background": "#1a1c1a",
+                    "surface-container": "#efeeeb",
+                    "on-secondary-fixed": "#1a1c19",
+                    "tertiary": "#705a49"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "stack-sm": "24px",
+                    "container-max": "1280px",
+                    "stack-md": "48px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "stack-lg": "80px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Playfair Display"
+                    ],
+                    "headline-sm": [
+                            "Playfair Display"
+                    ],
+                    "display-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "body-lg": [
+                            "Montserrat"
+                    ],
+                    "body-md": [
+                            "Montserrat"
+                    ],
+                    "headline-md": [
+                            "Playfair Display"
+                    ],
+                    "body-sm": [
+                            "Montserrat"
+                    ],
+                    "label-caps": [
+                            "Montserrat"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-panel {
+            background: rgba(250, 249, 246, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface shadow-[40px_0_40px_rgba(112,90,73,0.04)] shadow-sm flex flex-col h-full py-8 px-6 z-50 hidden md:flex border-r border-outline-variant/20">
+<div class="mb-12">
+<h1 class="font-display-lg text-headline-sm text-primary tracking-tight">Nisa Ayakkabı</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-2 opacity-70">Admin Console</p>
+</div>
+<ul class="space-y-4 flex-1">
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-secondary-container/50 transition-colors ease-in-out duration-300 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-secondary-container/50 transition-colors ease-in-out duration-300 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span>Products</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-secondary-container/50 transition-colors ease-in-out duration-300 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span>Categories</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-primary font-bold border-r-2 border-primary bg-primary/5 transition-colors ease-in-out duration-300 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="receipt_long">receipt_long</span>
+<span>Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-secondary-container/50 transition-colors ease-in-out duration-300 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-6 border-t border-outline-variant/20 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">Admin User</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 mt-1">LOGOUT</p>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 relative min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-desktop z-40 duration-300 ease-out">
+<div class="flex items-center">
+<button class="md:hidden mr-4 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Sipariş Yönetimi</h2>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative hidden sm:flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant/50 text-sm">search</span>
+<input class="bg-surface-container-low border-b border-outline-variant/50 border-t-0 border-l-0 border-r-0 focus:border-primary focus:ring-0 py-2 pl-10 pr-4 text-body-sm font-body-sm w-64 transition-all duration-300 bg-transparent placeholder-on-surface-variant/50" placeholder="Sipariş No veya Müşteri Ara..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="pt-24 px-margin-mobile md:px-margin-desktop pb-12 max-w-[1280px] mx-auto">
+<!-- Filters and Actions Bar -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-sm gap-4">
+<div class="flex space-x-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto hide-scrollbar">
+<button class="px-4 py-2 rounded-full border border-primary bg-primary/5 text-primary font-label-caps text-label-caps whitespace-nowrap transition-all duration-300">TÜMÜ (124)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant/50 text-on-surface-variant hover:border-primary/50 hover:bg-surface-container-low font-label-caps text-label-caps whitespace-nowrap transition-all duration-300">HAZIRLANIYOR (12)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant/50 text-on-surface-variant hover:border-primary/50 hover:bg-surface-container-low font-label-caps text-label-caps whitespace-nowrap transition-all duration-300">KARGOYA VERİLDİ (45)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant/50 text-on-surface-variant hover:border-primary/50 hover:bg-surface-container-low font-label-caps text-label-caps whitespace-nowrap transition-all duration-300">TAMAMLANDI (67)</button>
+</div>
+<div class="flex items-center space-x-3 w-full md:w-auto">
+<div class="relative flex-1 md:flex-none">
+<select class="appearance-none bg-surface-container-low border-none rounded-DEFAULT py-2 pl-4 pr-10 text-body-sm font-body-sm w-full md:w-48 focus:ring-1 focus:ring-primary cursor-pointer text-on-surface">
+<option>Yeniden Eskiye</option>
+<option>Eskiden Yeniye</option>
+<option>Tutar (Azalan)</option>
+<option>Tutar (Artan)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<button class="p-2 border border-outline-variant/50 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-300">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Orders Table / List -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-[0_40px_40px_rgba(112,90,73,0.02)]">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/30 bg-surface-container-low/50">
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant opacity-70">SİPARİŞ NO</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant opacity-70">MÜŞTERİ</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant opacity-70">TARİH</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant opacity-70">TUTAR</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant opacity-70">DURUM</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-on-surface-variant opacity-70 text-right">İŞLEMLER</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant/20">
+<!-- Order Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-300 group">
+<td class="py-4 px-6 font-semibold">#ORD-9024</td>
+<td class="py-4 px-6">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim/30 flex items-center justify-center text-primary font-bold text-xs">
+                                            AY
+                                        </div>
+<span>Ayşe Yılmaz</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">24 Eki 2023, 14:30</td>
+<td class="py-4 px-6 font-semibold">₺4,250.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>
+                                        Hazırlanıyor
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Durum Güncelle">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Detayları Gör">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-300 group">
+<td class="py-4 px-6 font-semibold">#ORD-9023</td>
+<td class="py-4 px-6">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim/30 flex items-center justify-center text-primary font-bold text-xs">
+                                            MK
+                                        </div>
+<span>Mehmet Kaya</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">24 Eki 2023, 11:15</td>
+<td class="py-4 px-6 font-semibold">₺2,890.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-tertiary/10 text-tertiary border border-tertiary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-1.5"></span>
+                                        Kargoya Verildi
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Durum Güncelle">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Detayları Gör">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-300 group">
+<td class="py-4 px-6 font-semibold">#ORD-9022</td>
+<td class="py-4 px-6">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim/30 flex items-center justify-center text-primary font-bold text-xs">
+                                            ZD
+                                        </div>
+<span>Zeynep Demir</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">23 Eki 2023, 16:45</td>
+<td class="py-4 px-6 font-semibold">₺6,100.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Tamamlandı
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Durum Güncelle">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Detayları Gör">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 4 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors duration-300 group">
+<td class="py-4 px-6 font-semibold">#ORD-9021</td>
+<td class="py-4 px-6">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim/30 flex items-center justify-center text-primary font-bold text-xs">
+                                            CD
+                                        </div>
+<span>Cem Deniz</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">23 Eki 2023, 09:20</td>
+<td class="py-4 px-6 font-semibold">₺1,450.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>
+                                        Hazırlanıyor
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Durum Güncelle">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-300" title="Detayları Gör">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-outline-variant/30 p-4 flex items-center justify-between bg-surface-container-lowest">
+<span class="text-body-sm font-body-sm text-on-surface-variant">1-4 / 124 Sipariş gösteriliyor</span>
+<div class="flex space-x-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/50 text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-body-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/50 text-on-surface hover:bg-surface-container-low font-body-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/50 text-on-surface hover:bg-surface-container-low font-body-sm">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/50 text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

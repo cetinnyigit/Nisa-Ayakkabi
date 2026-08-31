@@ -1,0 +1,349 @@
+<!DOCTYPE html><html class="light" lang="tr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ödeme - NISA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#fbddc7",
+                      "inverse-primary": "#e6c182",
+                      "on-error": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-surface": "#1a1c1a",
+                      "on-primary-fixed-variant": "#5b430f",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#503906",
+                      "outline": "#7f7668",
+                      "surface-tint": "#755a25",
+                      "primary-fixed": "#ffdea7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#271900",
+                      "surface-container-highest": "#e3e2e0",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#dbdad7",
+                      "on-secondary-container": "#62635f",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed": "#1a1c19",
+                      "secondary-container": "#e0e0db",
+                      "surface-container-high": "#e9e8e5",
+                      "primary-container": "#c5a367",
+                      "surface-container": "#efeeeb",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#28180b",
+                      "primary-fixed-dim": "#e6c182",
+                      "secondary-fixed-dim": "#c6c7c2",
+                      "inverse-surface": "#2f312f",
+                      "surface": "#faf9f6",
+                      "secondary-fixed": "#e3e3de",
+                      "on-tertiary-fixed-variant": "#574333",
+                      "tertiary-container": "#bea38f",
+                      "tertiary-fixed-dim": "#dec1ac",
+                      "secondary": "#5d5f5b",
+                      "tertiary": "#705a49",
+                      "surface-container-low": "#f4f3f1",
+                      "on-surface-variant": "#4d463a",
+                      "surface-variant": "#e3e2e0",
+                      "primary": "#755a25",
+                      "outline-variant": "#d1c5b5",
+                      "background": "#faf9f6",
+                      "inverse-on-surface": "#f2f1ee",
+                      "on-background": "#1a1c1a",
+                      "surface-bright": "#faf9f6",
+                      "on-secondary-fixed-variant": "#454744",
+                      "on-tertiary-container": "#4c392a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "stack-lg": "80px",
+                      "stack-md": "48px",
+                      "base": "8px",
+                      "margin-mobile": "20px",
+                      "container-max": "1280px",
+                      "stack-sm": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Playfair Display"],
+                      "label-caps": ["Montserrat"],
+                      "headline-md": ["Playfair Display"],
+                      "body-lg": ["Montserrat"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "body-md": ["Montserrat"],
+                      "display-lg": ["Playfair Display"],
+                      "body-sm": ["Montserrat"]
+              },
+              "fontSize": {
+                      "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "headline-md": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.neutral'); }
+        /* Ambient Shadows */
+        .shadow-ambient {
+            box-shadow: 0 40px 40px rgba(112, 90, 73, 0.04);
+        }
+        /* Custom Scrollbar for small areas if needed */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: theme('colors.surface-variant'); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.outline'); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar is suppressed for linear/transactional checkout flow to keep user focused -->
+<!-- Minimal Checkout Header -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md shadow-[0_40px_40px_rgba(112,90,73,0.04)] transition-all duration-300 ease-in-out">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
+<!-- Mobile Menu Toggle -->
+<button aria-label="Menu" class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Brand Logo -->
+<a class="font-headline-md text-headline-md tracking-widest text-primary dark:text-primary-fixed-dim" href="#">
+                NISA
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-primary dark:text-primary-fixed-dim border-b border-primary/30 pb-1 font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">YENİ GELENLER</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/80 font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">AYAKKABI</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/80 font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">ÇANTA</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/80 font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">KOLEKSİYONLAR</a>
+<a class="text-error font-label-caps text-label-caps hover:opacity-80 transition-colors duration-300" href="#">İNDİRİM</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim">
+<button aria-label="search" class="hover:text-primary-fixed-dim transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button aria-label="person" class="hover:text-primary-fixed-dim transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">person</span>
+</button>
+<button aria-label="shopping_bag" class="hover:text-primary-fixed-dim transition-colors duration-300 relative">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary w-4 h-4 rounded-full flex items-center justify-center text-[10px]">2</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg w-full pt-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Forms -->
+<div class="lg:col-span-7 space-y-stack-md">
+<!-- Section 1: Contact -->
+<section class="bg-surface rounded-lg p-stack-sm shadow-ambient">
+<div class="flex items-center justify-between mb-stack-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'wght' 300;">contact_mail</span>
+                            İletişim Bilgileri
+                        </h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Zaten bir hesabınız var mı? <a class="text-primary hover:underline" href="#">Giriş yapın</a></span>
+</div>
+<div class="space-y-4">
+<div>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="E-posta Adresi" type="email">
+</div>
+<div class="flex items-center gap-2 mt-4">
+<input class="rounded border-outline-variant text-primary focus:ring-primary bg-surface-container-lowest w-4 h-4 cursor-pointer" id="newsletter" type="checkbox">
+<label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer" for="newsletter">Haberler ve fırsatlardan haberdar olmak istiyorum</label>
+</div>
+</div>
+</section>
+<!-- Section 2: Shipping -->
+<section class="bg-surface rounded-lg p-stack-sm shadow-ambient">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'wght' 300;">local_shipping</span>
+                        Teslimat Adresi
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="md:col-span-2">
+<select class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 appearance-none text-on-surface">
+<option>Türkiye</option>
+<option>Amerika Birleşik Devletleri</option>
+<option>Birleşik Krallık</option>
+</select>
+</div>
+<div>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Ad" type="text">
+</div>
+<div>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Soyad" type="text">
+</div>
+<div class="md:col-span-2">
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Adres" type="text">
+</div>
+<div class="md:col-span-2">
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Daire, suit vb. (isteğe bağlı)" type="text">
+</div>
+<div>
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Şehir" type="text">
+</div>
+<div class="grid grid-cols-2 gap-4">
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Eyalet/İl" type="text">
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Posta Kodu" type="text">
+</div>
+<div class="md:col-span-2">
+<input class="w-full bg-surface-container-lowest border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none py-3 px-0 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Telefon" type="tel">
+</div>
+</div>
+</section>
+<!-- Section 3: Payment -->
+<section class="bg-surface rounded-lg p-stack-sm shadow-ambient">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'wght' 300;">credit_card</span>
+                        Ödeme
+                    </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Tüm işlemler güvenli ve şifrelidir.</p>
+<div class="border border-outline-variant rounded-lg overflow-hidden">
+<!-- Credit Card Option -->
+<div class="p-4 border-b border-outline-variant bg-surface-container-lowest flex items-center gap-3 cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary border-outline-variant w-4 h-4 cursor-pointer" id="pay_card" name="payment_method" type="radio">
+<label class="font-body-md text-body-md text-on-surface flex-grow cursor-pointer flex justify-between items-center" for="pay_card">
+                                Kredi Kartı
+                                <div class="flex gap-1 opacity-60">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+</div>
+</label>
+</div>
+<!-- Credit Card Details (Active) -->
+<div class="p-4 bg-surface-container-low space-y-4">
+<div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none py-2 px-3 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Kart numarası" type="text">
+</div>
+<div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none py-2 px-3 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Kart üzerindeki isim" type="text">
+</div>
+<div class="grid grid-cols-2 gap-4">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none py-2 px-3 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Son kullanma tarihi (AA / YY)" type="text">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none py-2 px-3 font-body-md text-body-md transition-colors duration-300 placeholder:text-on-surface-variant/50" placeholder="Güvenlik kodu" type="text">
+</div>
+</div>
+<!-- Bank Transfer Option -->
+<div class="p-4 bg-surface-container-lowest flex items-center gap-3 cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant w-4 h-4 cursor-pointer" id="pay_transfer" name="payment_method" type="radio">
+<label class="font-body-md text-body-md text-on-surface flex-grow cursor-pointer flex justify-between items-center" for="pay_transfer">
+                                Banka Havalesi
+                                <span class="material-symbols-outlined opacity-60" style="font-variation-settings: 'wght' 300;">account_balance</span>
+</label>
+</div>
+</div>
+<button class="w-full mt-stack-sm bg-tertiary text-on-tertiary font-label-caps text-label-caps py-4 rounded-lg hover:bg-on-tertiary-fixed-variant transition-colors duration-300 shadow-ambient flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">lock</span>
+                        ŞİMDİ ÖDE — $845.00
+                    </button>
+</section>
+</div>
+<!-- Right Column: Order Summary (Sticky) -->
+<div class="lg:col-span-5 relative">
+<div class="sticky top-stack-md bg-surface rounded-lg p-stack-sm shadow-ambient border border-surface-variant/50">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm">Sipariş Özeti</h2>
+<!-- Items -->
+<div class="space-y-6 mb-stack-sm">
+<!-- Item 1 -->
+<div class="flex gap-4 items-center">
+<div class="relative w-20 h-24 bg-surface-container-high rounded flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up studio shot of a high-end luxury leather handbag in a rich caramel mocha color. The lighting is soft and directional, highlighting the fine grain of the artisanal leather and the subtle gold-tone hardware. The background is a clean, minimal cream studio setting, creating a soft luxury aesthetic. The mood is sophisticated and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyvDGd7rJe4Z1dKEJ9HTT9p5gtZL2IWhfAZeoDWz1SQxhBwYyWWY6HyEAjBd5ENNkoEvSKxASXDWzhr1DHrI-VwWJRVJzA-OU5iAqARS68n7ZKlLHzKSBpXUJqRF3ScGqXTjmUiPfV_NPsQkK2wz76PxRpm53LALG2CKvsMEsrUcqN1CM3XduVKVFv-wFs35wdPyW-gz9-Ef9d7rv3M1QSU_ZlKgXGZGaInv0ghik6HaKsouXIEnpmpw">
+<span class="absolute -top-2 -right-2 bg-secondary text-on-secondary w-6 h-6 rounded-full flex items-center justify-center font-label-caps text-[10px] z-10 border-2 border-surface">1</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">Zanaatkar Deri Çanta</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Karamel / Tek Ebat</p>
+</div>
+<div class="font-body-md text-body-md text-on-surface">
+                                $595.00
+                            </div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 items-center">
+<div class="relative w-20 h-24 bg-surface-container-high rounded flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pair of elegant minimalist high-heeled sandals in a soft beige nude tone. Studio photography with high-key lighting, casting soft, diffused shadows on a clean white surface. The design is sleek and modern, focusing on artisanal craftsmanship and fine materials. The image evokes a sense of understated exclusivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA3W22kAbupf5JAeVwaE9MF-CWW3tTmul1Qxc2460Bk6EaHEYKSmYcU8jwYyAGu-rmKPgX1GU-nFo3MSk1GvPpQFPghPNCE8eI-h3koXVGreeZPW7uGWQmMIQieio9Vde_6WrWt1Ako67nsqdAb4h5paz7qkmfOhutRmFwVTpQ-TpPIAGQqfPWwfkjhgF04P89W3h3uIsyexGAluTTwHYXl0IOQEfDlqEyP0vDNcNzebukgI1CSOaI3A">
+<span class="absolute -top-2 -right-2 bg-secondary text-on-secondary w-6 h-6 rounded-full flex items-center justify-center font-label-caps text-[10px] z-10 border-2 border-surface">1</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">İpek Şeritli Sandalet</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Nude / 38</p>
+</div>
+<div class="font-body-md text-body-md text-on-surface">
+                                $250.00
+                            </div>
+</div>
+</div>
+<!-- Discount Code -->
+<div class="flex gap-2 mb-stack-sm pt-6 border-t border-outline-variant">
+<input class="flex-grow bg-surface-container-lowest border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none py-3 px-4 font-body-md text-body-md transition-colors duration-300" placeholder="Hediye kartı veya indirim kodu" type="text">
+<button class="bg-surface-variant text-on-surface font-label-caps text-label-caps px-6 rounded hover:bg-outline-variant transition-colors duration-300">Uygula</button>
+</div>
+<!-- Totals -->
+<div class="space-y-3 font-body-md text-body-md text-on-surface-variant border-t border-outline-variant pt-6">
+<div class="flex justify-between">
+<span class="">Ara Toplam</span>
+<span class="text-on-surface">$845.00</span>
+</div>
+<div class="flex justify-between">
+<span class="">Kargo</span>
+<span class="text-on-surface">Sonraki adımda hesaplanacak</span>
+</div>
+<div class="flex justify-between">
+<span class="">Vergiler</span>
+<span class="text-on-surface">$0.00</span>
+</div>
+<div class="flex justify-between items-end pt-4 mt-4 border-t border-outline-variant">
+<span class="font-headline-sm text-headline-sm text-on-surface">Toplam</span>
+<div class="flex items-baseline gap-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">USD</span>
+<span class="font-headline-md text-headline-md text-on-surface">$845.00</span>
+</div>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="mt-8 pt-6 border-t border-outline-variant flex justify-center gap-6 opacity-60">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'wght' 200;">verified_user</span>
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'wght' 200;">lock</span>
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'wght' 200;">local_shipping</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest w-full mt-stack-lg border-t border-surface-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop py-stack-md flex flex-col md:flex-row justify-between gap-gutter">
+<div class="mb-8 md:mb-0">
+<h2 class="font-headline-sm text-headline-sm text-tertiary dark:text-tertiary-fixed-dim">NISA</h2>
+<p class="font-body-sm text-body-sm text-tertiary dark:text-tertiary-fixed-dim mt-2 opacity-80">© 2024 NISA AYAKKABI. PIECES OF ARTISANAL LUXURY.</p>
+</div>
+<nav class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="text-on-surface-variant dark:text-on-surface-variant/70 font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Marka Hikayesi</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/70 font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Sürdürülebilirlik</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/70 font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Kargo ve İadeler</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/70 font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Bize Ulaşın</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/70 font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Gizlilik Politikası</a>
+</nav>
+</div>
+</footer>
+
+
+</body></html>
