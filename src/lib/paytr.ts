@@ -65,7 +65,11 @@ export type TokenRequest = {
 
 /**
  * PayTR'den ödeme token'ı alır. Dönen token ile
- * https://www.paytr.com/odeme/guest/{token} iframe'de açılır.
+ * https://www.paytr.com/odeme/guvenli/{token} iframe'de açılır (bkz. PaytrFrame).
+ *
+ * Adresteki "guvenli" bölümü önemli: "guest" yolu 302 ile /404'e, oradan da
+ * ana sayfaya düşer ve ana sayfanın `frame-ancestors 'self'` başlığı yüzünden
+ * tarayıcı iframe'i engeller.
  */
 export async function createPaytrToken(req: TokenRequest): Promise<string> {
   const config = getPaytrConfig();

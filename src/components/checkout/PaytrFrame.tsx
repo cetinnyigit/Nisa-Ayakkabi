@@ -21,7 +21,7 @@ export default function PaytrFrame({ token }: { token: string }) {
     <>
       <iframe
         id="paytriframe"
-        src={`https://www.paytr.com/odeme/guest/${token}`}
+        src={`https://www.paytr.com/odeme/guvenli/${token}`}
         title="PayTR Güvenli Ödeme"
         className="w-full"
         style={{ minHeight: 720, border: 0 }}
