@@ -167,3 +167,17 @@ export function generateOrderNumber(): string {
   const random = crypto.randomBytes(3).toString("hex").toUpperCase();
   return `NSA${time}${random}`;
 }
+
+/**
+ * PayTR bir merchant_oid'i yalnızca bir kez kabul eder; başarısız bir denemeden
+ * sonra aynı numarayla token istenirse "sipariş numarası daha önce kullanılmış"
+ * hatası döner. Bu yüzden her yeni denemeye `<siparişNo>R<n>` biçiminde yeni bir
+ * oid verilir. Sipariş numarasının kendisi ilk denemenin oid'idir.
+ */
+export function nextPaymentOid(orderNumber: string, currentOid: string): string {
+  const suffix = currentOid.startsWith(orderNumber)
+    ? currentOid.slice(orderNumber.length)
+    : "";
+  const attempt = /^R\d+$/.test(suffix) ? Number(suffix.slice(1)) : 1;
+  return `${orderNumber}R${attempt + 1}`;
+}

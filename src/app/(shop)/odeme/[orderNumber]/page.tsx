@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import PaytrFrame from "@/components/checkout/PaytrFrame";
 import { Icon } from "@/components/ui/Icon";
 import { auth } from "@/lib/auth";
+import { preparePaymentOid } from "@/lib/orders";
 import { prisma } from "@/lib/prisma";
 import { createPaytrToken, isPaytrConfigured } from "@/lib/paytr";
 import { formatPrice, toNumber } from "@/lib/utils";
@@ -32,9 +34,14 @@ function clientIp() {
 
 export default async function PaymentPage({
   params,
+  searchParams,
 }: {
   params: { orderNumber: string };
+  searchParams: { durum?: string };
 }) {
+  // PayTR başarısız ödemede merchant_fail_url'e yönlendirir.
+  const failedAttempt = searchParams.durum === "basarisiz";
+
   const order = await prisma.order.findUnique({
     where: { orderNumber: params.orderNumber },
     include: {
@@ -89,12 +96,16 @@ export default async function PaymentPage({
 
   const site = siteUrl();
 
+  // Her ödeme denemesi PayTR'ye ayrı bir merchant_oid ile gider; başarısız bir
+  // denemeden sonra aynı numarayla token istenemez.
+  const merchantOid = await preparePaymentOid(order);
+
   let token: string | null = null;
   let error: string | null = null;
 
   try {
     token = await createPaytrToken({
-      orderNumber: order.orderNumber,
+      orderNumber: merchantOid,
       email: order.guestEmail ?? "musteri@nisaayakkabi.com",
       amount: toNumber(order.total),
       userName: `${order.address.firstName} ${order.address.lastName}`,
@@ -129,6 +140,16 @@ export default async function PaymentPage({
           </p>
         </header>
 
+        {failedAttempt && !error && (
+          <div
+            role="alert"
+            className="mb-stack-sm rounded-lg border border-error/30 bg-error-container p-4 text-center font-body-md text-body-md text-on-error-container"
+          >
+            Önceki ödeme tamamlanamadı, kartınızdan tahsilat yapılmadı. Aşağıdan tekrar
+            deneyebilirsiniz.
+          </div>
+        )}
+
         {error ? (
           <div
             role="alert"
@@ -144,13 +165,7 @@ export default async function PaymentPage({
           </div>
         ) : (
           <div className="overflow-hidden rounded-lg border border-outline-variant/30 bg-surface-container-lowest shadow-ambient">
-            <iframe
-              src={`https://www.paytr.com/odeme/guest/${token}`}
-              title="PayTR Güvenli Ödeme"
-              className="h-[720px] w-full"
-              frameBorder="0"
-              scrolling="no"
-            />
+            <PaytrFrame token={token!} />
           </div>
         )}
 

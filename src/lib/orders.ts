@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { calculateTotals } from "@/lib/shipping";
-import { generateOrderNumber } from "@/lib/paytr";
+import { generateOrderNumber, nextPaymentOid } from "@/lib/paytr";
 import { toNumber } from "@/lib/utils";
 
 export type CartLineInput = { variantId: string; quantity: number };
@@ -209,17 +209,70 @@ export async function createPendingOrder(input: CheckoutInput) {
 }
 
 /**
+ * Bir ödeme denemesi için PayTR'ye gönderilecek merchant_oid'i hazırlar ve
+ * siparişin `paymentId` alanına yazar. Callback bu alan üzerinden siparişi bulur.
+ *
+ * - İlk denemede oid = sipariş numarası.
+ * - Önceki deneme başarısızsa PayTR eski oid'i kabul etmeyeceği için yeni bir
+ *   oid üretilir ve sipariş yeniden "ödeme bekleniyor" durumuna alınır.
+ * - Deneme hâlâ sürüyorsa (PENDING) mevcut oid tekrar kullanılır; böylece sayfa
+ *   her yenilendiğinde yeni bir sipariş numarası üretilmez.
+ */
+export async function preparePaymentOid(order: {
+  id: string;
+  orderNumber: string;
+  paymentId: string | null;
+  paymentStatus: string;
+}): Promise<string> {
+  if (!order.paymentId) {
+    await prisma.order.update({
+      where: { id: order.id },
+      data: { paymentId: order.orderNumber },
+    });
+    return order.orderNumber;
+  }
+
+  if (order.paymentStatus === "FAILED") {
+    const oid = nextPaymentOid(order.orderNumber, order.paymentId);
+    await prisma.order.update({
+      where: { id: order.id },
+      data: { paymentId: oid, paymentStatus: "PENDING" },
+    });
+    return oid;
+  }
+
+  return order.paymentId;
+}
+
+/**
+ * Callback'ten gelen merchant_oid'e karşılık gelen siparişi bulur.
+ * Önce güncel deneme numarası (`paymentId`), sonra sipariş numarası denenir —
+ * ikincisi `paymentId` yazılmadan önce oluşmuş siparişler için geriye dönük destek.
+ */
+async function findOrderByPaymentOid(merchantOid: string) {
+  return (
+    (await prisma.order.findFirst({ where: { paymentId: merchantOid } })) ??
+    (await prisma.order.findUnique({ where: { orderNumber: merchantOid } }))
+  );
+}
+
+/**
  * Ödeme onaylandığında çağrılır: siparişi PAID yapar ve stokları düşer.
  * Aynı callback birden fazla kez gelebileceği için idempotent'tir.
  */
-export async function markOrderPaid(orderNumber: string) {
+export async function markOrderPaid(merchantOid: string) {
+  const found = await findOrderByPaymentOid(merchantOid);
+  if (!found) return { ok: false as const, reason: "not_found" as const };
+
   return prisma.$transaction(async (tx) => {
     const order = await tx.order.findUnique({
-      where: { orderNumber },
+      where: { id: found.id },
       include: { items: true },
     });
-    if (!order) return { ok: false, reason: "not_found" as const };
-    if (order.paymentStatus === "PAID") return { ok: true, alreadyPaid: true };
+    if (!order) return { ok: false as const, reason: "not_found" as const };
+    if (order.paymentStatus === "PAID") {
+      return { ok: true as const, alreadyPaid: true, orderNumber: order.orderNumber };
+    }
 
     // Stok düşme KOŞULLU yapılır: `stock >= quantity` şartı sorgunun WHERE'ine
     // konur, böylece iki eş zamanlı ödeme aynı stoğu iki kez düşemez ve stok
@@ -262,12 +315,17 @@ export async function markOrderPaid(orderNumber: string) {
       },
     });
 
-    return { ok: true, alreadyPaid: false, shortages: shortages.length };
+    return {
+      ok: true as const,
+      alreadyPaid: false,
+      shortages: shortages.length,
+      orderNumber: order.orderNumber,
+    };
   });
 }
 
-export async function markOrderFailed(orderNumber: string) {
-  const order = await prisma.order.findUnique({ where: { orderNumber } });
+export async function markOrderFailed(merchantOid: string) {
+  const order = await findOrderByPaymentOid(merchantOid);
   if (!order || order.paymentStatus === "PAID") return;
 
   await prisma.order.update({

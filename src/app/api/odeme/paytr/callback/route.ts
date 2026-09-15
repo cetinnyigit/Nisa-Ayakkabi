@@ -44,8 +44,10 @@ export async function POST(request: Request) {
       }
       // Yalnızca ilk onayda gönder — PayTR bildirimi tekrarlayabilir.
       // E-posta hatası bildirimi başarısız saymamalı, o yüzden await'i yutuyoruz.
+      // merchantOid yeniden deneme sonrası sipariş numarasından farklı olabilir;
+      // e-posta her zaman çözümlenen sipariş numarasıyla gönderilir.
       if (!result.alreadyPaid) {
-        await sendOrderConfirmation(merchantOid).catch(() => undefined);
+        await sendOrderConfirmation(result.orderNumber).catch(() => undefined);
       }
     } else {
       await markOrderFailed(merchantOid);
