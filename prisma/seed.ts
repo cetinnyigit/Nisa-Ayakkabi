@@ -3,17 +3,30 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-/** Geçici görseller — gerçek ürün fotoğrafları Vercel Blob'a yüklenince değişecek. */
+/**
+ * Geçici görseller — gerçek ürün fotoğrafları Vercel Blob'a yüklenince değişecek.
+ *
+ * DİKKAT: Buraya eklenecek her görselde MARKA/LOGO GÖRÜNMEMELİ. PayTR canlı mod
+ * başvurusu, sitede üçüncü taraf marka (Nike, Puma, Birkenstock vb.) içeren
+ * görseller bulunduğu gerekçesiyle bir kez reddedildi. Unsplash'te "sneaker"
+ * aramalarının büyük kısmı markalı ürün fotoğrafıdır; eklemeden önce görseli
+ * açıp logo olmadığını gözle doğrulayın.
+ */
 const img = {
-  sneakerWhite: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=1000",
+  sneakerWhite: "https://images.unsplash.com/photo-1608384177866-0bca0d225435?auto=format&fit=crop&q=80&w=1000",
   sneakerSuede: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&q=80&w=1000",
-  sneakerPlatform: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=1000",
-  // Not: eski photo-1512374382149 Unsplash'ten kaldırıldı (404) — değiştirildi.
-  sneakerSport: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1000",
-  catSneaker: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=1000",
-  catTerlik: "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&q=80&w=1000",
-  catBabet: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=1000",
-  catBot: "https://images.unsplash.com/photo-1605733513597-a8f8341084e6?auto=format&fit=crop&q=80&w=1000",
+  sneakerPlatform: "https://images.unsplash.com/photo-1672920800748-a5fb6dfd0c2b?auto=format&fit=crop&q=80&w=1000",
+  sneakerSport: "https://images.unsplash.com/photo-1531851378526-c7c8eb5cb43f?auto=format&fit=crop&q=80&w=1000",
+  catSneaker: "https://images.unsplash.com/photo-1502830778456-7c68e5a3c5f2?auto=format&fit=crop&q=80&w=1000",
+
+  babet: "https://images.unsplash.com/photo-1758542988664-49951c5b1999?auto=format&fit=crop&q=80&w=1000",
+  botSuet: "https://images.unsplash.com/photo-1621996659490-3275b4d0d951?auto=format&fit=crop&q=80&w=1000",
+  botDeri: "https://images.unsplash.com/photo-1605732440685-d0654d81aa30?auto=format&fit=crop&q=80&w=1000",
+  terlikEv: "https://images.unsplash.com/photo-1627388484741-74dcc56ec343?auto=format&fit=crop&q=80&w=1000",
+  terlikCiftBant: "https://images.unsplash.com/photo-1585120824848-8a5cd41493d2?auto=format&fit=crop&q=80&w=1000",
+  topuklu: "https://images.unsplash.com/photo-1789110519471-74ac17dd1cf6?auto=format&fit=crop&q=80&w=1000",
+  sandalet: "https://images.unsplash.com/photo-1596523027665-9da35ced2388?auto=format&fit=crop&q=80&w=1000",
+
   // Ana sayfa hero'su: kadın ayağında topuklu, editoryal çekim (Vlad Deep / Unsplash).
   // Geniş ekranı doldurduğu için diğerlerinden yüksek çözünürlük ve kalitede.
   hero: "https://images.unsplash.com/photo-1659261448687-6d01466e06e4?auto=format&fit=crop&q=85&w=2400",
@@ -21,11 +34,11 @@ const img = {
 
 const categories = [
   { name: "Sneaker", nameEn: "Sneakers", slug: "sneaker", image: img.catSneaker, showInNav: true, navPosition: 1, showOnHome: true, homePosition: 1 },
-  { name: "Babet", nameEn: "Flats", slug: "babet", image: img.catBabet, showInNav: true, navPosition: 2, showOnHome: true, homePosition: 2 },
-  { name: "Bot", nameEn: "Boots", slug: "bot", image: img.catBot, showInNav: true, navPosition: 3, showOnHome: true, homePosition: 3 },
-  { name: "Terlik", nameEn: "Slippers", slug: "terlik", image: img.catTerlik, showInNav: true, navPosition: 4, showOnHome: true, homePosition: 4 },
-  { name: "Topuklu", nameEn: "Heels", slug: "topuklu", image: img.catBabet, showInNav: false, navPosition: 5, showOnHome: false, homePosition: 5 },
-  { name: "Sandalet", nameEn: "Sandals", slug: "sandalet", image: img.catTerlik, showInNav: false, navPosition: 6, showOnHome: false, homePosition: 6 },
+  { name: "Babet", nameEn: "Flats", slug: "babet", image: img.babet, showInNav: true, navPosition: 2, showOnHome: true, homePosition: 2 },
+  { name: "Bot", nameEn: "Boots", slug: "bot", image: img.botDeri, showInNav: true, navPosition: 3, showOnHome: true, homePosition: 3 },
+  { name: "Terlik", nameEn: "Slippers", slug: "terlik", image: img.terlikEv, showInNav: true, navPosition: 4, showOnHome: true, homePosition: 4 },
+  { name: "Topuklu", nameEn: "Heels", slug: "topuklu", image: img.topuklu, showInNav: false, navPosition: 5, showOnHome: false, homePosition: 5 },
+  { name: "Sandalet", nameEn: "Sandals", slug: "sandalet", image: img.sandalet, showInNav: false, navPosition: 6, showOnHome: false, homePosition: 6 },
 ];
 
 type SeedProduct = {
@@ -84,7 +97,7 @@ const products: SeedProduct[] = [
     name: "Deri Babet", nameEn: "Leather Flat", slug: "deri-babet",
     description: "Yumuşak keçi derisinden üretilen, katlanabilir esnek tabanlı klasik babet.",
     descriptionEn: "Classic flat made from soft goatskin with a foldable flexible sole.",
-    price: 2150, categorySlug: "babet", image: img.catBabet,
+    price: 2150, categorySlug: "babet", image: img.babet,
     material: "Keçi derisi", materialEn: "Goatskin", season: "4mevsim",
     featured: true, bestSeller: true,
   },
@@ -92,14 +105,14 @@ const products: SeedProduct[] = [
     name: "Sivri Burun Süet Babet", nameEn: "Pointed Suede Flat", slug: "sivri-burun-suet-babet",
     description: "Sivri burun kalıbı ile bacakları uzun gösteren, ofis kombinleri için ideal süet babet.",
     descriptionEn: "Pointed-toe suede flat that elongates the leg — ideal for office looks.",
-    price: 2350, categorySlug: "babet", image: img.catBabet,
+    price: 2350, categorySlug: "babet", image: img.babet,
     material: "Süet", materialEn: "Suede", season: "4mevsim",
   },
   {
     name: "Süet Bot", nameEn: "Suede Boot", slug: "suet-bot",
     description: "Yün astarlı, su itici süet bot. Kaydırmaz taban ile kış aylarında güvenli adımlar.",
     descriptionEn: "Wool-lined, water-repellent suede boot. Non-slip sole for confident winter steps.",
-    price: 4200, comparePrice: 4900, categorySlug: "bot", image: img.catBot,
+    price: 4200, comparePrice: 4900, categorySlug: "bot", image: img.botSuet,
     material: "Süet", materialEn: "Suede", heelHeight: 3.5, season: "kis",
     featured: true, bestSeller: true,
   },
@@ -107,21 +120,21 @@ const products: SeedProduct[] = [
     name: "Deri Bilekli Bot", nameEn: "Leather Ankle Boot", slug: "deri-bilekli-bot",
     description: "Yan fermuarlı, hakiki deri bilek botu. Blok topuk ile gün boyu denge.",
     descriptionEn: "Side-zip genuine leather ankle boot. Block heel for all-day balance.",
-    price: 3890, categorySlug: "bot", image: img.catBot,
+    price: 3890, categorySlug: "bot", image: img.botDeri,
     material: "Hakiki deri", materialEn: "Genuine leather", heelHeight: 5, season: "kis",
   },
   {
     name: "Deri Ev Terliği", nameEn: "Leather Slipper", slug: "deri-ev-terligi",
     description: "Anatomik mantar tabanlı, hakiki deri bantlı terlik.",
     descriptionEn: "Genuine leather strap slipper with an anatomical cork footbed.",
-    price: 1450, categorySlug: "terlik", image: img.catTerlik,
+    price: 1450, categorySlug: "terlik", image: img.terlikEv,
     material: "Hakiki deri", materialEn: "Genuine leather", season: "yaz",
   },
   {
     name: "Çift Bantlı Terlik", nameEn: "Double Strap Slipper", slug: "cift-bantli-terlik",
     description: "Ayarlanabilir çift bant ile her ayak yapısına uyum sağlayan yazlık terlik.",
     descriptionEn: "Summer slipper with adjustable double straps that fit every foot shape.",
-    price: 1650, categorySlug: "terlik", image: img.catTerlik,
+    price: 1650, categorySlug: "terlik", image: img.terlikCiftBant,
     material: "Hakiki deri", materialEn: "Genuine leather", season: "yaz",
     newArrival: true,
   },
@@ -129,7 +142,7 @@ const products: SeedProduct[] = [
     name: "Klasik Topuklu", nameEn: "Classic Pump", slug: "klasik-topuklu",
     description: "7 cm stiletto topuk, deri astar ve yastıklı iç taban ile özel günlerin klasiği.",
     descriptionEn: "A special-occasion classic with a 7 cm stiletto heel, leather lining and cushioned insole.",
-    price: 3450, categorySlug: "topuklu", image: img.catBabet,
+    price: 3450, categorySlug: "topuklu", image: img.topuklu,
     material: "Rugan deri", materialEn: "Patent leather", heelHeight: 7, season: "4mevsim",
     featured: true, bestSeller: true,
   },
@@ -137,7 +150,7 @@ const products: SeedProduct[] = [
     name: "İpli Sandalet", nameEn: "Strappy Sandal", slug: "ipli-sandalet",
     description: "Bilekten bağlamalı ince deri kayışlar ve 4 cm dolgu topuk.",
     descriptionEn: "Ankle-tie thin leather straps with a 4 cm wedge heel.",
-    price: 2450, categorySlug: "sandalet", image: img.catTerlik,
+    price: 2450, categorySlug: "sandalet", image: img.sandalet,
     material: "Hakiki deri", materialEn: "Genuine leather", heelHeight: 4, season: "yaz",
     bestSeller: true,
   },
