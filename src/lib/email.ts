@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { company, formatAddress } from "@/lib/company";
 import { prisma } from "@/lib/prisma";
 import { siteUrl } from "@/lib/site";
 import { formatPrice, toNumber } from "@/lib/utils";
@@ -8,7 +9,13 @@ import { formatPrice, toNumber } from "@/lib/utils";
  * e-posta gönderilememesi siparişi bozmamalı.
  */
 
-const FROM = process.env.ORDER_EMAIL_FROM || "Nisa Ayakkabı <siparis@nisaayakkabi.com>";
+const FROM = process.env.ORDER_EMAIL_FROM || "Nisa Ayakkabı <siparis@nisayakkabi.com>";
+
+/**
+ * Gönderim adresinin gelen kutusu yok (Resend yalnızca gönderim yapar).
+ * Müşteri "yanıtla" derse mail gerçek destek adresine düşsün.
+ */
+const REPLY_TO = company.supportEmail;
 
 export function isEmailConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY);
@@ -78,6 +85,7 @@ export async function sendPasswordResetEmail(
     await resend.emails.send({
       from: FROM,
       to,
+      replyTo: REPLY_TO,
       subject: "Şifre sıfırlama bağlantınız",
       html,
     });
@@ -183,7 +191,9 @@ export async function sendOrderConfirmation(orderNumber: string): Promise<EmailR
     </p>
 
     <p style="margin:32px 0 0;font-family:Montserrat,Arial,sans-serif;font-size:12px;line-height:1.6;color:#7f7668;text-align:center;">
-      Nisa Ayakkabı · El işçiliği lüks parçalar<br>
+      ${escapeHtml(company.legalName)} · ${escapeHtml(company.brandName)}<br>
+      ${escapeHtml(formatAddress())}<br>
+      ${escapeHtml(company.phone)} · ${escapeHtml(company.email)}<br><br>
       Sorularınız için bu e-postayı yanıtlayabilirsiniz.
     </p>
   </div>
@@ -194,6 +204,7 @@ export async function sendOrderConfirmation(orderNumber: string): Promise<EmailR
     await resend.emails.send({
       from: FROM,
       to,
+      replyTo: REPLY_TO,
       subject: `Siparişiniz alındı — ${order.orderNumber}`,
       html,
     });

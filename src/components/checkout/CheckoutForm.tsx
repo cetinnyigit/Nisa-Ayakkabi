@@ -69,6 +69,8 @@ export function CheckoutForm() {
   const [error, setError] = useState<string | null>(null);
   const [errorField, setErrorField] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Mesafeli Sözleşmeler Yönetmeliği: sipariş onayından önce açık onay alınmalı.
+  const [accepted, setAccepted] = useState(false);
 
   function update<K extends keyof Fields>(key: K, value: string) {
     setFields((f) => ({ ...f, [key]: value }));
@@ -78,6 +80,12 @@ export function CheckoutForm() {
     e.preventDefault();
     setError(null);
     setErrorField(null);
+
+    if (!accepted) {
+      setError("Devam etmek için sözleşmeleri onaylamanız gerekiyor.");
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -275,9 +283,36 @@ export function CheckoutForm() {
             ))}
           </div>
 
+          <label className="mb-4 flex cursor-pointer items-start gap-3">
+            <input
+              type="checkbox"
+              checked={accepted}
+              onChange={(e) => setAccepted(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-tertiary"
+            />
+            <span className="font-body-sm text-body-sm text-on-surface-variant">
+              <Link
+                href="/on-bilgilendirme-formu"
+                target="_blank"
+                className="text-primary underline underline-offset-2"
+              >
+                Ön Bilgilendirme Formu
+              </Link>
+              &apos;nu ve{" "}
+              <Link
+                href="/mesafeli-satis-sozlesmesi"
+                target="_blank"
+                className="text-primary underline underline-offset-2"
+              >
+                Mesafeli Satış Sözleşmesi
+              </Link>
+              &apos;ni okudum, onaylıyorum.
+            </span>
+          </label>
+
           <button
             type="submit"
-            disabled={submitting}
+            disabled={submitting || !accepted}
             className="w-full rounded bg-tertiary py-4 font-label-caps text-label-caps uppercase text-on-tertiary shadow-ambient transition-colors duration-300 hover:bg-on-tertiary-fixed-variant disabled:cursor-not-allowed disabled:opacity-50"
           >
             {submitting ? "Sipariş oluşturuluyor…" : "Ödemeye Geç"}

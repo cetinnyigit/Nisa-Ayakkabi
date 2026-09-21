@@ -21,6 +21,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/koleksiyon/yeni-gelenler`, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/koleksiyon/cok-satanlar`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/koleksiyon/indirim`, changeFrequency: "daily", priority: 0.7 },
+    { url: `${base}/iletisim`, changeFrequency: "yearly", priority: 0.5 },
+    { url: `${base}/mesafeli-satis-sozlesmesi`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/on-bilgilendirme-formu`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/iptal-ve-iade`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${base}/teslimat-ve-kargo`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${base}/gizlilik`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   return [

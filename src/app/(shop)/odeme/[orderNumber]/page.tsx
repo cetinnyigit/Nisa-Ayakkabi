@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import PaytrFrame from "@/components/checkout/PaytrFrame";
 import { Icon } from "@/components/ui/Icon";
 import { auth } from "@/lib/auth";
+import { company } from "@/lib/company";
 import { preparePaymentOid } from "@/lib/orders";
 import { prisma } from "@/lib/prisma";
 import { createPaytrToken, isPaytrConfigured } from "@/lib/paytr";
@@ -46,6 +47,8 @@ export default async function PaymentPage({
     where: { orderNumber: params.orderNumber },
     include: {
       address: true,
+      // Üye siparişlerinde guestEmail null kalır; PayTR'ye gerçek adres gitmeli.
+      user: { select: { email: true } },
       items: { include: { product: { select: { name: true } }, variant: true } },
     },
   });
@@ -106,7 +109,7 @@ export default async function PaymentPage({
   try {
     token = await createPaytrToken({
       orderNumber: merchantOid,
-      email: order.guestEmail ?? "musteri@nisaayakkabi.com",
+      email: order.user?.email ?? order.guestEmail ?? company.supportEmail,
       amount: toNumber(order.total),
       userName: `${order.address.firstName} ${order.address.lastName}`,
       userAddress: `${order.address.address}, ${order.address.district ?? ""} ${order.address.city}`.trim(),
