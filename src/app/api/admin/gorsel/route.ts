@@ -1,6 +1,7 @@
 import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
+import { isBlobConfigured } from "@/lib/blob";
 import { slugify } from "@/lib/utils";
 
 const MAX_BYTES = 5 * 1024 * 1024;
@@ -12,11 +13,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Yetkiniz yok." }, { status: 403 });
   }
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  if (!isBlobConfigured()) {
     return NextResponse.json(
       {
         error:
-          "Görsel yükleme yapılandırılmamış. BLOB_READ_WRITE_TOKEN tanımlanana kadar " +
+          "Görsel yükleme yapılandırılmamış. Vercel Blob bağlanana kadar " +
           "görsel adresini elle yapıştırabilirsiniz.",
         notConfigured: true,
       },

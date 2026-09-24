@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
-import { FREE_SHIPPING_THRESHOLD } from "@/lib/shipping";
+import { FREE_SHIPPING_FOR_ALL, FREE_SHIPPING_THRESHOLD } from "@/lib/shipping";
 import { formatPrice } from "@/lib/utils";
 
 const items = [
   {
     icon: "local_shipping",
     title: "Ücretsiz Kargo",
-    text: `${formatPrice(FREE_SHIPPING_THRESHOLD)} ve üzeri alışverişlerde geçerli`,
+    text: FREE_SHIPPING_FOR_ALL
+      ? "Tüm siparişlerde geçerli"
+      : `${formatPrice(FREE_SHIPPING_THRESHOLD)} ve üzeri alışverişlerde geçerli`,
     href: "/teslimat-ve-kargo",
   },
   {

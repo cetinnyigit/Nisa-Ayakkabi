@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage, LegalSection, LegalLink, LegalTable } from "@/components/legal/LegalPage";
 import { company, formatAddress } from "@/lib/company";
-import { FREE_SHIPPING_THRESHOLD, SHIPPING_COST } from "@/lib/shipping";
-import { formatPrice } from "@/lib/utils";
+import { shippingSummary } from "@/lib/shipping";
 
 export const metadata: Metadata = {
   title: "Ön Bilgilendirme Formu",
@@ -47,9 +46,7 @@ export default function PreInfoPage() {
 
       <LegalSection heading="3. Kargo ve Teslimat Masrafı">
         <p>
-          Sepet tutarı {formatPrice(FREE_SHIPPING_THRESHOLD)} ve üzerindeyse kargo ücretsizdir;
-          bu tutarın altındaki siparişlerde {formatPrice(SHIPPING_COST)} kargo ücreti
-          uygulanır. Kargo ücreti sipariş özetinde ayrı bir kalem olarak gösterilir.
+          {shippingSummary()} Kargo ücreti sipariş özetinde ayrı bir kalem olarak gösterilir.
         </p>
       </LegalSection>
 

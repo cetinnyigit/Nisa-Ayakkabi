@@ -6,6 +6,7 @@ import ProductPurchasePanel from "@/components/product/ProductPurchasePanel";
 import ProductCard from "@/components/product/ProductCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Icon } from "@/components/ui/Icon";
+import { shippingSummary } from "@/lib/shipping";
 import { getProductBySlug, getRelatedProducts } from "@/lib/queries";
 
 export async function generateMetadata({
@@ -109,7 +110,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 />
               </summary>
               <div className="pt-4 font-body-sm text-body-sm leading-relaxed text-on-surface-variant">
-                1000 TL üzeri siparişlerde ücretsiz kargo. Saat 16:00&apos;ya kadar verilen
+                {shippingSummary()} Saat 16:00&apos;ya kadar verilen
                 siparişler aynı gün kargoda. İadeler, kullanılmamış ve orijinal ambalajında olmak
                 kaydıyla teslimattan sonraki 14 gün içinde kabul edilir.
               </div>

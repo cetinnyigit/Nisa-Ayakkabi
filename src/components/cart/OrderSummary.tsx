@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
-import { FREE_SHIPPING_THRESHOLD, calculateTotals } from "@/lib/shipping";
+import { FREE_SHIPPING_FOR_ALL, FREE_SHIPPING_THRESHOLD, calculateTotals } from "@/lib/shipping";
 import { formatPrice } from "@/lib/utils";
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 
 export function OrderSummary({ subtotal, action, children }: Props) {
   const { shipping, total } = calculateTotals(subtotal);
-  const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
+  const remaining = FREE_SHIPPING_FOR_ALL ? 0 : FREE_SHIPPING_THRESHOLD - subtotal;
 
   return (
     <div className="sticky top-32 rounded-lg border border-outline-variant/30 bg-secondary-container/20 p-8 shadow-ambient">

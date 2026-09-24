@@ -2,6 +2,7 @@ import Link from "next/link";
 import ProductForm from "@/components/admin/ProductForm";
 import { Icon } from "@/components/ui/Icon";
 import { prisma } from "@/lib/prisma";
+import { isBlobConfigured } from "@/lib/blob";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +31,7 @@ export default async function NewProductPage() {
       <ProductForm
         categories={categories}
         brands={brands}
-        uploadEnabled={Boolean(process.env.BLOB_READ_WRITE_TOKEN)}
+        uploadEnabled={isBlobConfigured()}
         initial={{
           name: "",
           description: "",

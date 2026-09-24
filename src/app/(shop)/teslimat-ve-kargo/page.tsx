@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage, LegalSection, LegalLink, LegalTable } from "@/components/legal/LegalPage";
 import { company } from "@/lib/company";
-import { FREE_SHIPPING_THRESHOLD, SHIPPING_COST } from "@/lib/shipping";
+import { FREE_SHIPPING_FOR_ALL, FREE_SHIPPING_THRESHOLD, SHIPPING_COST } from "@/lib/shipping";
 import { formatPrice } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -19,7 +19,17 @@ export default function ShippingPage() {
     >
       <LegalSection heading="Kargo Ücreti">
         <LegalTable
-          rows={[
+          rows={
+            FREE_SHIPPING_FOR_ALL
+              ? [
+                  [
+                    "Tüm siparişler",
+                    <span key="ucretsiz" className="text-primary">
+                      Ücretsiz kargo
+                    </span>,
+                  ],
+                ]
+              : [
             [
               `${formatPrice(FREE_SHIPPING_THRESHOLD)} ve üzeri`,
               <span key="ucretsiz" className="text-primary">
@@ -27,7 +37,8 @@ export default function ShippingPage() {
               </span>,
             ],
             [`${formatPrice(FREE_SHIPPING_THRESHOLD)} altı`, formatPrice(SHIPPING_COST)],
-          ]}
+                ]
+          }
         />
         <p>
           Kargo ücreti sepet ve ödeme sayfalarında, siparişi onaylamadan önce ayrı bir kalem

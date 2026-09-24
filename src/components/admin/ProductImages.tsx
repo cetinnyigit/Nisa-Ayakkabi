@@ -23,7 +23,7 @@ export function ProductImages({
   productId?: string;
   images: ProductImageData[];
   onChange?: (next: ProductImageData[]) => void;
-  /** BLOB_READ_WRITE_TOKEN tanımlı mı — sunucuda okunup buraya aktarılır. */
+  /** Vercel Blob bağlı mı — sunucuda okunup buraya aktarılır. */
   uploadEnabled?: boolean;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -157,7 +157,7 @@ export function ProductImages({
           />
           <p className="mt-1 font-body-sm text-[12px] text-on-surface-variant">
             {uploadDisabled
-              ? "Dosya yükleme kapalı — .env dosyasında BLOB_READ_WRITE_TOKEN tanımlı değil. " +
+              ? "Dosya yükleme kapalı — Vercel Blob bağlı değil (BLOB_STORE_ID tanımlı değil). " +
                 "Yandaki alana görsel adresi yapıştırabilirsiniz."
               : "JPEG / PNG / WebP / AVIF, en fazla 5 MB."}
           </p>

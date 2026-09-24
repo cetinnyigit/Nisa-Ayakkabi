@@ -7,6 +7,7 @@ import ProductVariants from "@/components/admin/ProductVariants";
 import { Icon } from "@/components/ui/Icon";
 import { prisma } from "@/lib/prisma";
 import { toNumber } from "@/lib/utils";
+import { isBlobConfigured } from "@/lib/blob";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +52,7 @@ export default async function EditProductPage({ params }: { params: { id: string
         <ProductImages
           productId={product.id}
           images={product.images}
-          uploadEnabled={Boolean(process.env.BLOB_READ_WRITE_TOKEN)}
+          uploadEnabled={isBlobConfigured()}
         />
 
         <ProductVariants productId={product.id} variants={product.variants} />

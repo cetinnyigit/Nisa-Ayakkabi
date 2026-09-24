@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage, LegalSection, LegalLink, LegalTable } from "@/components/legal/LegalPage";
 import { company, formatAddress } from "@/lib/company";
-import { FREE_SHIPPING_THRESHOLD, SHIPPING_COST } from "@/lib/shipping";
-import { formatPrice } from "@/lib/utils";
+import { shippingSummary } from "@/lib/shipping";
 
 export const metadata: Metadata = {
   title: "Mesafeli Satış Sözleşmesi",
@@ -66,8 +65,7 @@ export default function DistanceSalesPage() {
           sonuna kadar geçerliliğini korur.
         </p>
         <p>
-          Kargo ücreti: sepet tutarı {formatPrice(FREE_SHIPPING_THRESHOLD)} ve üzerindeyse
-          ücretsiz, altındaysa {formatPrice(SHIPPING_COST)}&apos;dir.
+          Kargo ücreti: {shippingSummary()}
         </p>
       </LegalSection>
 
