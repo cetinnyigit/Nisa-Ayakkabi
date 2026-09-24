@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SafeImage from "@/components/ui/SafeImage";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import ClearCartOnSuccess from "@/components/checkout/ClearCartOnSuccess";
 import Button from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -43,6 +43,11 @@ export default async function OrderPage({ params }: { params: { orderNumber: str
   // yolu bu). Bir hesaba bağlı siparişi ise yalnızca sahibi ya da yönetici görebilir.
   if (order.userId) {
     const session = await auth();
+    // E-postadaki bağlantı çoğu zaman oturum açık olmayan bir tarayıcıda açılır:
+    // 404 yerine girişe gönder, girişten sonra siparişe geri dönülsün.
+    if (!session) {
+      redirect(`/giris?callbackUrl=${encodeURIComponent(`/siparis/${order.orderNumber}`)}`);
+    }
     const isOwner = session?.user?.id === order.userId;
     const isAdmin = session?.user?.role === "ADMIN";
     if (!isOwner && !isAdmin) notFound();
