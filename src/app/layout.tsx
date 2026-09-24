@@ -19,11 +19,11 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nisa Ayakkabı — Artisanal Luxury",
+    default: "Nisa Ayakkabı",
     template: "%s | Nisa Ayakkabı",
   },
   description:
-    "El işçiliğiyle üretilen kadın ayakkabı ve çanta koleksiyonları. Zamansız tasarım, hakiki deri, sınırlı üretim.",
+    "Yeni sezon kadın ayakkabı modellerini keşfedin. Bot, çizme ve sandalet çeşitleri şıklık ve konforu bir arada. Online alışverişe özel fırsatlar Nisa Ayakkabı'da.",
 };
 
 export default function RootLayout({
