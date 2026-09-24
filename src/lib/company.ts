@@ -23,11 +23,11 @@ export const company = {
   phoneE164: "+905352663759",
   /** Ekranda gösterilen biçim */
   phone: "+90 535 266 37 59",
-  email: "sedateginer@gmail.com",
+  email: "sedatenginer@gmail.com",
   /** İade/iptal taleplerinin gittiği adres */
-  supportEmail: "sedateginer@gmail.com",
+  supportEmail: "sedatenginer@gmail.com",
   /** Yeni sipariş bildirimlerinin gittiği adres (satıcı) */
-  orderNotificationEmail: "sedateginer@gmail.com",
+  orderNotificationEmail: "sedatenginer@gmail.com",
 
   taxOffice: "Pendik Vergi Dairesi",
   taxNumber: "29075468652",
