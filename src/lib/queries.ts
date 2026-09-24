@@ -122,6 +122,36 @@ const virtualCollections: Record<string, { title: string; where: object }> = {
   indirim: { title: "İndirim", where: { comparePrice: { not: null } } },
 };
 
+/** Koleksiyonlar sayfasındaki seçki bannerları için metinler. */
+const curatedMeta: { slug: string; eyebrow: string; tagline: string }[] = [
+  { slug: "yeni-gelenler", eyebrow: "Yeni Sezon", tagline: "Atölyeden yeni çıkan modeller" },
+  { slug: "cok-satanlar", eyebrow: "En Sevilenler", tagline: "Müşterilerimizin favorileri" },
+  { slug: "indirim", eyebrow: "Fırsat", tagline: "Seçili modellerde özel fiyatlar" },
+];
+
+/** Her seçki için kapak olarak en yeni ürünün ilk görselini ve ürün sayısını getirir. */
+export async function getCuratedCollections() {
+  return Promise.all(
+    curatedMeta.map(async (meta) => {
+      const where = { active: true, ...virtualCollections[meta.slug].where };
+      const [cover, count] = await Promise.all([
+        prisma.product.findFirst({
+          where: { ...where, images: { some: {} } },
+          select: { images: { select: { url: true }, orderBy: { position: "asc" }, take: 1 } },
+          orderBy: { createdAt: "desc" },
+        }),
+        prisma.product.count({ where }),
+      ]);
+      return {
+        ...meta,
+        name: virtualCollections[meta.slug].title,
+        image: cover?.images[0]?.url ?? null,
+        count,
+      };
+    })
+  );
+}
+
 export async function getCollection(slug: string) {
   const virtual = virtualCollections[slug];
   if (virtual) {

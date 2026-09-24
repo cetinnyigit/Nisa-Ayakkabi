@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
+import CollectionBanner from "@/components/collection/CollectionBanner";
 import CategoryCard from "@/components/product/CategoryCard";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { getAllCategories } from "@/lib/queries";
+import { getAllCategories, getCuratedCollections } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Koleksiyonlar",
   description: "Nisa Ayakkabı'nın el işçiliği koleksiyonlarını keşfedin.",
 };
 
-const curated = [
-  { slug: "yeni-gelenler", name: "Yeni Gelenler", image: null },
-  { slug: "cok-satanlar", name: "Çok Satanlar", image: null },
-  { slug: "indirim", name: "İndirim", image: null },
-];
-
 export default async function CollectionsPage() {
-  const categories = await getAllCategories();
+  const [categories, curated] = await Promise.all([getAllCategories(), getCuratedCollections()]);
 
   return (
     <div className="pb-stack-lg pt-stack-md">
@@ -30,9 +25,9 @@ export default async function CollectionsPage() {
 
       <section className="container-nisa pb-stack-lg">
         <SectionHeading title="Seçkiler" subtitle="Öne çıkan koleksiyonlar." />
-        <div className="grid grid-cols-2 gap-gutter md:grid-cols-3">
-          {curated.map((c) => (
-            <CategoryCard key={c.slug} category={c} />
+        <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 md:grid-cols-3">
+          {curated.map((c, i) => (
+            <CollectionBanner key={c.slug} collection={c} priority={i === 0} />
           ))}
         </div>
       </section>
