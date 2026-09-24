@@ -26,6 +26,8 @@ export const company = {
   email: "sedateginer@gmail.com",
   /** İade/iptal taleplerinin gittiği adres */
   supportEmail: "sedateginer@gmail.com",
+  /** Yeni sipariş bildirimlerinin gittiği adres (satıcı) */
+  orderNotificationEmail: "sedateginer@gmail.com",
 
   taxOffice: "Pendik Vergi Dairesi",
   taxNumber: "29075468652",

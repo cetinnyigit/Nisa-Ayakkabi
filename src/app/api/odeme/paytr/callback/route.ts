@@ -1,4 +1,4 @@
-import { sendOrderConfirmation } from "@/lib/email";
+import { sendNewOrderNotification, sendOrderConfirmation } from "@/lib/email";
 import { markOrderFailed, markOrderPaid } from "@/lib/orders";
 import { PaytrNotConfiguredError, verifyCallbackHash } from "@/lib/paytr";
 
@@ -42,12 +42,16 @@ export async function POST(request: Request) {
       if (!result.ok) {
         return new Response("PAYTR notification failed: order not found", { status: 404 });
       }
+      // Müşteriye onay, satıcıya yeni sipariş bildirimi.
       // Yalnızca ilk onayda gönder — PayTR bildirimi tekrarlayabilir.
       // E-posta hatası bildirimi başarısız saymamalı, o yüzden await'i yutuyoruz.
       // merchantOid yeniden deneme sonrası sipariş numarasından farklı olabilir;
       // e-posta her zaman çözümlenen sipariş numarasıyla gönderilir.
       if (!result.alreadyPaid) {
-        await sendOrderConfirmation(result.orderNumber).catch(() => undefined);
+        await Promise.all([
+          sendOrderConfirmation(result.orderNumber).catch(() => undefined),
+          sendNewOrderNotification(result.orderNumber).catch(() => undefined),
+        ]);
       }
     } else {
       await markOrderFailed(merchantOid);
