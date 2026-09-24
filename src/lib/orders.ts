@@ -184,7 +184,8 @@ export async function createPendingOrder(input: CheckoutInput) {
       data: {
         orderNumber: generateOrderNumber(),
         userId: input.userId ?? null,
-        guestEmail: input.userId ? null : fields.email,
+        // Formda yazılan e-posta üyelerde de saklanır: sipariş e-postaları bu adrese gider.
+        guestEmail: fields.email,
         guestPhone: input.userId ? null : fields.phone,
         guestName: input.userId ? null : `${fields.firstName} ${fields.lastName}`,
         addressId: address.id,

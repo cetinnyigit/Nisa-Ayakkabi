@@ -47,7 +47,7 @@ export default async function PaymentPage({
     where: { orderNumber: params.orderNumber },
     include: {
       address: true,
-      // Üye siparişlerinde guestEmail null kalır; PayTR'ye gerçek adres gitmeli.
+      // Eski üye siparişlerinde guestEmail boş; PayTR'ye gerçek adres gitmeli.
       user: { select: { email: true } },
       items: { include: { product: { select: { name: true } }, variant: true } },
     },
@@ -109,7 +109,7 @@ export default async function PaymentPage({
   try {
     token = await createPaytrToken({
       orderNumber: merchantOid,
-      email: order.user?.email ?? order.guestEmail ?? company.supportEmail,
+      email: order.guestEmail ?? order.user?.email ?? company.supportEmail,
       amount: toNumber(order.total),
       userName: `${order.address.firstName} ${order.address.lastName}`,
       userAddress: `${order.address.address}, ${order.address.district ?? ""} ${order.address.city}`.trim(),

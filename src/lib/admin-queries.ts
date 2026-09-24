@@ -135,6 +135,8 @@ export async function getAdminOrders(status?: string, page = 1) {
     take: ORDERS_PAGE_SIZE,
     include: {
       address: true,
+      // Eski üye siparişlerinde guestEmail boş; e-posta hesaptan alınır.
+      user: { select: { email: true } },
       // Devasa siparişler sayfayı kilitlemesin diye kalemler sınırlı çekilir.
       items: {
         take: ORDER_ITEMS_PREVIEW,
@@ -155,7 +157,7 @@ export async function getAdminOrders(status?: string, page = 1) {
       id: o.id,
       orderNumber: o.orderNumber,
       customer: `${o.address.firstName} ${o.address.lastName}`,
-      email: o.guestEmail,
+      email: o.guestEmail ?? o.user?.email ?? null,
       phone: o.address.phone,
       city: o.address.city,
       total: toNumber(o.total),

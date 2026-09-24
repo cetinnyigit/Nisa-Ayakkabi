@@ -171,7 +171,8 @@ export async function sendOrderConfirmation(orderNumber: string): Promise<EmailR
   const order = await loadOrderForEmail(orderNumber);
   if (!order) return { sent: false, reason: "order_not_found" };
 
-  const to = order.user?.email ?? order.guestEmail;
+  // Siparişte yazılan adres önceliklidir; eski üye siparişlerinde hesap e-postasına düşer.
+  const to = order.guestEmail ?? order.user?.email;
   if (!to) return { sent: false, reason: "no_recipient" };
 
   const customerName = order.user?.name ?? order.guestName ?? order.address.firstName;
@@ -246,7 +247,7 @@ export async function sendNewOrderNotification(orderNumber: string): Promise<Ema
   const order = await loadOrderForEmail(orderNumber);
   if (!order) return { sent: false, reason: "order_not_found" };
 
-  const customerEmail = order.user?.email ?? order.guestEmail;
+  const customerEmail = order.guestEmail ?? order.user?.email;
   const customerName =
     order.user?.name ??
     order.guestName ??
