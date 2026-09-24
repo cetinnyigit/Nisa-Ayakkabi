@@ -11,6 +11,7 @@ const links = [
   { href: "/admin/siparisler", label: "Siparişler", icon: "receipt_long" },
   { href: "/admin/urunler", label: "Ürünler", icon: "shopping_bag" },
   { href: "/admin/kategoriler", label: "Kategoriler", icon: "category" },
+  { href: "/admin/gorunum", label: "Görünüm", icon: "wallpaper" },
 ];
 
 export function AdminNav({ userName }: { userName: string }) {

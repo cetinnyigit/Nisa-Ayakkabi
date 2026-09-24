@@ -1,6 +1,7 @@
 import CategoryEditor from "@/components/admin/CategoryEditor";
 import CategoryRow from "@/components/admin/CategoryRow";
 import { getAdminCategories } from "@/lib/admin-queries";
+import { isBlobConfigured } from "@/lib/blob";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -38,7 +39,7 @@ export default async function AdminCategoriesPage() {
         </p>
       </header>
 
-      <CategoryEditor categories={editable} />
+      <CategoryEditor categories={editable} uploadEnabled={isBlobConfigured()} />
 
       <div className="overflow-x-auto rounded-lg bg-surface-container-lowest p-6 shadow-ambient">
         <table className="w-full min-w-[800px] text-left">

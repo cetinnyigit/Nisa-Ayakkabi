@@ -302,3 +302,15 @@ model Review {
   @@unique([productId, userId])
   @@map("reviews")
 }
+
+/// Koleksiyonlar sayfasındaki seçki bannerları (yeni-gelenler, cok-satanlar, indirim).
+/// Kayıt yoksa ya da alan boşsa varsayılan metin ve koleksiyonun en yeni ürün görseli kullanılır.
+model CollectionBanner {
+  slug      String   @id
+  eyebrow   String?
+  tagline   String?
+  image     String?
+  updatedAt DateTime @updatedAt
+
+  @@map("collection_banners")
+}

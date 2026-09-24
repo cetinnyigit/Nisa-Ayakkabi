@@ -6,6 +6,8 @@ import { slugify } from "@/lib/utils";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 const ALLOWED = ["image/jpeg", "image/png", "image/webp", "image/avif"];
+/** Blob'daki klasörler — istemciden gelen değer bu listeyle sınırlanır. */
+const FOLDERS = ["urunler", "banner", "kategori", "genel"];
 
 export async function POST(request: Request) {
   const session = await requireAdmin();
@@ -42,10 +44,12 @@ export async function POST(request: Request) {
   }
 
   const extension = file.name.split(".").pop() ?? "jpg";
-  const base = slugify(file.name.replace(/\.[^.]+$/, "")) || "urun";
+  const base = slugify(file.name.replace(/\.[^.]+$/, "")) || "gorsel";
+  const requestedFolder = String(form.get("folder") ?? "urunler");
+  const folder = FOLDERS.includes(requestedFolder) ? requestedFolder : "urunler";
 
   try {
-    const blob = await put(`urunler/${base}-${Date.now()}.${extension}`, file, {
+    const blob = await put(`${folder}/${base}-${Date.now()}.${extension}`, file, {
       access: "public",
       contentType: file.type,
     });

@@ -122,30 +122,48 @@ const virtualCollections: Record<string, { title: string; where: object }> = {
   indirim: { title: "İndirim", where: { comparePrice: { not: null } } },
 };
 
-/** Koleksiyonlar sayfasındaki seçki bannerları için metinler. */
-const curatedMeta: { slug: string; eyebrow: string; tagline: string }[] = [
+/** Seçki bannerlarının varsayılan metinleri — yönetim panelinden değiştirilebilir. */
+export const CURATED_DEFAULTS: { slug: string; eyebrow: string; tagline: string }[] = [
   { slug: "yeni-gelenler", eyebrow: "Yeni Sezon", tagline: "Atölyeden yeni çıkan modeller" },
   { slug: "cok-satanlar", eyebrow: "En Sevilenler", tagline: "Müşterilerimizin favorileri" },
   { slug: "indirim", eyebrow: "Fırsat", tagline: "Seçili modellerde özel fiyatlar" },
 ];
 
-/** Her seçki için kapak olarak en yeni ürünün ilk görselini ve ürün sayısını getirir. */
+export const CURATED_SLUGS = CURATED_DEFAULTS.map((c) => c.slug);
+
+export function getCuratedTitle(slug: string): string | null {
+  return virtualCollections[slug]?.title ?? null;
+}
+
+/**
+ * Seçki bannerları: panelde girilen metin/görsel varsa o, yoksa varsayılan metin ve
+ * koleksiyondaki en yeni ürünün ilk görseli kullanılır.
+ */
 export async function getCuratedCollections() {
+  const overrides = await prisma.collectionBanner.findMany({
+    where: { slug: { in: CURATED_SLUGS } },
+  });
+
   return Promise.all(
-    curatedMeta.map(async (meta) => {
+    CURATED_DEFAULTS.map(async (meta) => {
+      const custom = overrides.find((o) => o.slug === meta.slug);
       const where = { active: true, ...virtualCollections[meta.slug].where };
       const [cover, count] = await Promise.all([
-        prisma.product.findFirst({
-          where: { ...where, images: { some: {} } },
-          select: { images: { select: { url: true }, orderBy: { position: "asc" }, take: 1 } },
-          orderBy: { createdAt: "desc" },
-        }),
+        custom?.image
+          ? null
+          : prisma.product.findFirst({
+              where: { ...where, images: { some: {} } },
+              select: { images: { select: { url: true }, orderBy: { position: "asc" }, take: 1 } },
+              orderBy: { createdAt: "desc" },
+            }),
         prisma.product.count({ where }),
       ]);
       return {
-        ...meta,
+        slug: meta.slug,
         name: virtualCollections[meta.slug].title,
-        image: cover?.images[0]?.url ?? null,
+        eyebrow: custom?.eyebrow || meta.eyebrow,
+        tagline: custom?.tagline || meta.tagline,
+        image: custom?.image || cover?.images[0]?.url || null,
         count,
       };
     })

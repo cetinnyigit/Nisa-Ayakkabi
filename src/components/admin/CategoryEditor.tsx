@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import ImageField from "@/components/admin/ImageField";
 import ToggleSwitch from "@/components/admin/ToggleSwitch";
 import { Icon } from "@/components/ui/Icon";
 import {
@@ -32,7 +33,13 @@ const blank: CategoryFormData = {
   homePosition: 0,
 };
 
-export function CategoryEditor({ categories }: { categories: CategoryFormData[] }) {
+export function CategoryEditor({
+  categories,
+  uploadEnabled,
+}: {
+  categories: CategoryFormData[];
+  uploadEnabled: boolean;
+}) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<CategoryFormData>(blank);
@@ -161,13 +168,14 @@ export function CategoryEditor({ categories }: { categories: CategoryFormData[] 
                   onChange={(e) => set("slug", e.target.value)}
                 />
               </div>
-              <div className="md:col-span-2">
-                <label className={labelClass}>Görsel adresi</label>
-                <input
-                  className={inputClass}
-                  placeholder="https://…"
+              <div className="md:col-span-2 md:max-w-md">
+                <ImageField
+                  label="Kategori görseli"
                   value={data.image ?? ""}
-                  onChange={(e) => set("image", e.target.value)}
+                  onChange={(url) => set("image", url)}
+                  uploadEnabled={uploadEnabled}
+                  folder="kategori"
+                  aspect="aspect-[4/5]"
                 />
               </div>
               <div>
