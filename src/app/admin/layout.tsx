@@ -18,7 +18,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-background">
       <AdminNav userName={session.user.name ?? session.user.email ?? "Yönetici"} />
-      <main className="ml-0 px-margin-mobile py-stack-md md:ml-64 md:px-margin-desktop">
+      {/* pt-16: mobildeki sabit üst çubuğun altında kalmamak için */}
+      <main className="ml-0 px-margin-mobile pb-stack-md pt-[calc(4rem+24px)] md:ml-64 md:px-margin-desktop md:py-stack-md">
         {children}
       </main>
     </div>
